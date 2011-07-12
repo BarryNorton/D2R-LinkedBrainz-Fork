@@ -25,7 +25,8 @@ map:database a d2rq:Database;
     d2rq:username "musicbrainz";
     d2rq:password "musicbrainz";
     # relatively crude to limit db load
-    d2rq:resultSizeLimit 1000;
+    d2rq:resultSizeLimit "1000";
+    # jdbc:socketTimeout "30";
     .
 
 <> a d2r:Server;
@@ -60,6 +61,13 @@ map:Artist a d2rq:ClassMap;
 	d2rq:uriPattern "artist/@@musicbrainz.artist.gid@@#_";
 	d2rq:class mo:MusicArtist;
 	d2rq:classDefinitionLabel "Music Artist"@en;
+	.
+
+map:musicbrainz_guid_artist a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Artist;
+	d2rq:property mo:musicbrainz_guid;
+	d2rq:column "musicbrainz.artist.gid";
+	d2rq:datatype xsd:string;
 	.
 
 map:artist_name a d2rq:PropertyBridge;
@@ -227,6 +235,13 @@ map:ReleaseGroup a d2rq:ClassMap;
     d2rq:classDefinitionLabel "Signal Group"@en;
     .
 
+map:musicbrainz_guid_release_group a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ReleaseGroup;
+	d2rq:property mo:musicbrainz_guid;
+	d2rq:column "musicbrainz.release_group.gid";
+	d2rq:datatype xsd:string;
+	.
+
 map:release_group_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseGroup;
     d2rq:property dct:title;
@@ -271,6 +286,13 @@ map:Release a d2rq:ClassMap;
     d2rq:classDefinitionLabel "Release"@en;
     d2rq:uriPattern "release/@@musicbrainz.release.gid@@#_";
     .
+
+map:musicbrainz_guid_release a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Release;
+	d2rq:property mo:musicbrainz_guid;
+	d2rq:column "musicbrainz.release.gid";
+	d2rq:datatype xsd:string;
+	.
 
 map:release_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Release;
@@ -457,7 +479,8 @@ map:tracklist_track_count a d2rq:PropertyBridge;
 #########
 map:Track a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:bNodeIdColumns "musicbrainz.track.id";
+    # d2rq:bNodeIdColumns "musicbrainz.track.id";
+    d2rq:uriPattern "track/@@musicbrainz.track.id@@#_";
     d2rq:class mo:Track;
     d2rq:classDefinitionLabel "Track"@en;
     .
@@ -501,6 +524,13 @@ map:Recording a d2rq:ClassMap;
     d2rq:classDefinitionLabel "Signal"@en;
     d2rq:uriPattern "recording/@@musicbrainz.recording.gid@@#_";
     .
+
+map:musicbrainz_guid_recording a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Recording;
+	d2rq:property mo:musicbrainz_guid;
+	d2rq:column "musicbrainz.recording.gid";
+	d2rq:datatype xsd:string;
+	.
 
 map:recording_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
@@ -562,6 +592,13 @@ map:Work a d2rq:ClassMap;
     d2rq:classDefinitionLabel "Musical Work"@en;
     d2rq:uriPattern "work/@@musicbrainz.work.gid@@#_";
     .
+
+map:musicbrainz_guid_work a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Work;
+	d2rq:property mo:musicbrainz_guid;
+	d2rq:column "musicbrainz.work.gid";
+	d2rq:datatype xsd:string;
+	.
 
 map:work_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Work;
@@ -641,6 +678,13 @@ map:Label a d2rq:ClassMap;
     d2rq:classDefinitionLabel "Label"@en;
     d2rq:uriPattern "label/@@musicbrainz.label.gid@@#_";
     .
+
+map:musicbrainz_guid_label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Label;
+	d2rq:property mo:musicbrainz_guid;
+	d2rq:column "musicbrainz.label.gid";
+	d2rq:datatype xsd:string;
+	.
 
 map:label_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Label;
