@@ -25,7 +25,7 @@ map:database a d2rq:Database;
     d2rq:username "musicbrainz";
     d2rq:password "musicbrainz";
     # relatively crude to limit db load
-    d2rq:resultSizeLimit "1000";
+    # d2rq:resultSizeLimit "1000";
     # jdbc:socketTimeout "30";
     .
 
@@ -296,7 +296,7 @@ map:musicbrainz_guid_release a d2rq:PropertyBridge;
 
 map:release_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Release;
-    d2rq:property dct:title, rdfs:label;
+    d2rq:property dct:title;
     d2rq:join "musicbrainz.release.name => musicbrainz.release_name.id";
     d2rq:column "musicbrainz.release_name.name";
     .
@@ -580,6 +580,13 @@ map:duration a d2rq:PropertyBridge;
 
 map:DurationTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.DurationTranslator";
+    .
+
+map:recording_to_track a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Recording;
+    d2rq:property mo:published_as;
+    d2rq:refersToClassMap map:Track;
+    d2rq:join "musicbrainz.recording.id => musicbrainz.track.recording";
     .
     
 
