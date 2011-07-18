@@ -52,6 +52,10 @@ map:BBCTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.BBCTranslator";
     .
 
+map:DiscogsTrans a d2rq:TranslationTable;
+    d2rq:javaClass "translators.DiscogsTranslator";
+    .
+
 
 ################
 # artist table #
@@ -184,6 +188,17 @@ map:artist_dbpedia a d2rq:PropertyBridge;
     
 # discogs id=180 for artists
 # TODO discogs will pry need a translator as they do some funky things to the URIs
+map:artist_discogs a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property owl:sameAs;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.id=180";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
 
 # bbc link_type.id=190
 map:artist_bbc a d2rq:PropertyBridge;
