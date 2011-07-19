@@ -175,20 +175,20 @@ map:artist_country a d2rq:PropertyBridge;
     .
 
 # artist ARs
-# wikipedia id=179 for artists
+# wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
 map:artist_dbpedia a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property owl:sameAs;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.id=179";
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:DBpediaTrans;
     .
     
-# discogs id=180 for artists
+# discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
 # TODO discogs will pry need a translator as they do some funky things to the URIs
 map:artist_discogs a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
@@ -196,45 +196,45 @@ map:artist_discogs a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.id=180";
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:DiscogsTrans;
     .
 
-# bbc link_type.id=190
+# bbc link_type.gid=d028a975-000c-4525-9333-d3c8425e4b54
 map:artist_bbc a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property owl:sameAs;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.id=190";
+    d2rq:condition "musicbrainz.link_type.gid='d028a975-000c-4525-9333-d3c8425e4b54'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:BBCTrans;
     .
 
-# foaf:homepage link_type.id=183
+# foaf:homepage link_type.id=fe33d22f-c3b0-4d68-bd53-a856badf2b15
 map:artist_homepage a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property foaf:homepage;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.id=183";
+    d2rq:condition "musicbrainz.link_type.gid='fe33d22f-c3b0-4d68-bd53-a856badf2b15'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     .
 
-# MySpace id=189 for artists
+# MySpace gid=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
 map:artist_myspace a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property owl:sameAs;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.id=189";
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:MySpaceTrans;
@@ -750,17 +750,14 @@ map:label_alias a d2rq:PropertyBridge;
 # Information Services / Provenance #
 #####################################
 
-# MySpace id=189 for artists
+# MySpace id=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
 map:ArtistMyspaceIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    # d2rq:class  ;
     d2rq:classDefinitionLabel "Artist DBTune MySpace Resources"@en;
-    # not needed, or?
-    # d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.id=189"; 	
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:MySpaceTrans;
     .
@@ -772,14 +769,14 @@ map:artist_myspace_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:dbtunemyspace;
     .
 
-# Discogs id=180 for artists
+# Discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
 map:ArtistDiscogsIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Artist DataIncubator Discogs Resources"@en;
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.id=180"; 	
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:DiscogsTrans;
     .
@@ -791,14 +788,14 @@ map:artist_discogs_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:dataincubatordiscogs;
     .
 
-# BBC id=190 for artists
+# BBC gid=d028a975-000c-4525-9333-d3c8425e4b54 for artists
 map:ArtistBBCIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Artist BBC Resources"@en;
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.id=190"; 	
+    d2rq:condition "musicbrainz.link_type.gid='d028a975-000c-4525-9333-d3c8425e4b54'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:BBCTrans;
     .
@@ -809,14 +806,14 @@ map:artist_bbc_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:bbc;
     .
 
-# Wikipedia id=179 for artists
+# Wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
 map:ArtistDBPediaIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Artist DBpedia Resources"@en;
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.id=179"; 	
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:DBpediaTrans;
     .
