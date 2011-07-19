@@ -17,6 +17,8 @@
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix is: <http://purl.org/ontology/is/core#> .
+@prefix isi: <http://purl.org/ontology/is/inst/> .
 
 # connection stuff
 map:database a d2rq:Database;
@@ -742,3 +744,30 @@ map:label_alias a d2rq:PropertyBridge;
 #   6 | Reissue Production
 #   7 | Publisher
 # (7 rows)
+
+
+#####################################
+# Information Services / Provenance #
+#####################################
+
+# MySpace id=189 for artists
+map:ArtistMyspaceIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    # d2rq:class  ;
+    d2rq:classDefinitionLabel "Artist MySpace Resources"@en;
+    # not needed, or?
+    # d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.id=189"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MySpaceTrans;
+    .
+
+# http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
+map:artist_myspace_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistMyspaceIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:dbtunemyspace;
+    .
