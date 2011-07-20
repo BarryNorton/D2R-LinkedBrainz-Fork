@@ -190,7 +190,7 @@ map:artist_dbpedia a d2rq:PropertyBridge;
     
 # discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
 # TODO discogs will pry need a translator as they do some funky things to the URIs
-map:artist_discogs a d2rq:PropertyBridge;
+map:artist_data_incubator_discogs a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property owl:sameAs;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
@@ -228,7 +228,7 @@ map:artist_homepage a d2rq:PropertyBridge;
     .
 
 # MySpace gid=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
-map:artist_myspace a d2rq:PropertyBridge;
+map:artist_dbtune_myspace a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property owl:sameAs;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
@@ -760,7 +760,7 @@ map:label_alias a d2rq:PropertyBridge;
 
 # label ARs
 # MySpace gid=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
-map:label_myspace a d2rq:PropertyBridge;
+map:label_dbtune_myspace a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Label;
     d2rq:property owl:sameAs;
     d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
@@ -816,7 +816,7 @@ map:label_youtube a d2rq:PropertyBridge;
 #####################################
 
 # MySpace id=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
-map:ArtistMyspaceIS a d2rq:ClassMap;
+map:ArtistDBTuneMyspaceIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Artist DBTune MySpace Resources"@en;
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
@@ -828,14 +828,14 @@ map:ArtistMyspaceIS a d2rq:ClassMap;
     .
 
 # http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_myspace_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistMyspaceIS;
+map:artist_dbtune_myspace_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistDBTuneMyspaceIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbtunemyspace;
     .
 
 # MySpace id=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
-map:LabelMyspaceIS a d2rq:ClassMap;
+map:LabelDBTuneMyspaceIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Label DBTune MySpace Resources"@en;
     d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
@@ -847,14 +847,14 @@ map:LabelMyspaceIS a d2rq:ClassMap;
     .
 
 # http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
-map:label_myspace_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelMyspaceIS;
+map:label_dbtune_myspace_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelDBTuneMyspaceIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbtunemyspace;
     .
 
 # Discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
-map:ArtistDiscogsIS a d2rq:ClassMap;
+map:ArtistDataIncubatorDiscogsIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Artist DataIncubator Discogs Resources"@en;
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
@@ -866,8 +866,8 @@ map:ArtistDiscogsIS a d2rq:ClassMap;
     .
 
 # http://discogs.dataincubator.org/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_discogs_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistDiscogsIS;
+map:artist_data_incubator_discogs_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistDataIncubatorDiscogsIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dataincubatordiscogs;
     .
