@@ -288,6 +288,20 @@ map:release_group_credit a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
     .
 
+# release group (signal group) ARs
+# wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
+map:release_group_dbpedia a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property owl:sameAs;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DBpediaTrans;
+    .
+
 # TODO release_group types???
 #  id |       name       
 # ----+------------------
@@ -865,6 +879,24 @@ map:ArtistDBPediaIS a d2rq:ClassMap;
 
 map:artist_dbpedia_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistDBPediaIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:dbpedia;
+    .
+
+# Wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
+map:ReleaseGroupDBPediaIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group DBpedia Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DBpediaTrans;
+    .
+
+map:release_group_dbpedia_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupDBPediaIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbpedia;
     .
