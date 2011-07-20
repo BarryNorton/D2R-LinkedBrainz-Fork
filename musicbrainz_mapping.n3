@@ -51,15 +51,24 @@ map:WikipediaTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.WikipediaTranslator";
     .
 
+map:DBTuneMySpaceTrans a d2rq:TranslationTable;
+    d2rq:javaClass "translators.DBTuneMySpaceTranslator";
+    .
+
 map:MySpaceTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.MySpaceTranslator";
     .
+
 map:BBCTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.BBCTranslator";
     .
 
 map:DiscogsTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.DiscogsTranslator";
+    .
+
+map:YouTubeTrans a d2rq:TranslationTable;
+    d2rq:javaClass "translators.YouTubeTranslator";
     .
 
 
@@ -254,6 +263,19 @@ map:artist_dbtune_myspace a d2rq:PropertyBridge;
     d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DBTuneMySpaceTrans;
+    .
+
+# MySpace gid=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
+map:artist_myspace a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:MySpaceTrans;
     .
 
@@ -267,6 +289,7 @@ map:artist_youtube a d2rq:PropertyBridge;
     d2rq:condition "musicbrainz.link_type.gid='6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:YouTubeTrans;
     .
 
 # TODO: activity mapping
@@ -838,6 +861,7 @@ map:label_youtube a d2rq:PropertyBridge;
     d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'";
     d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:YouTubeTrans;
     .
 
 # TODO deal with label_type
@@ -867,7 +891,7 @@ map:ArtistDBTuneMyspaceIS a d2rq:ClassMap;
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MySpaceTrans;
+    d2rq:translateWith map:DBTuneMySpaceTrans;
     .
 
 # http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
@@ -875,6 +899,24 @@ map:artist_dbtune_myspace_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistDBTuneMyspaceIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbtunemyspace;
+    .
+
+# MySpace id=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
+map:ArtistMyspaceIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist MySpace Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MySpaceTrans;
+    .
+
+map:artist_myspace_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistMyspaceIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:myspace;
     .
 
 # MySpace id=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
@@ -1050,6 +1092,7 @@ map:ArtistYouTubeIS a d2rq:ClassMap;
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:condition "musicbrainz.link_type.gid='6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:YouTubeTrans;
     .
 
 # http://youtube.com/ (IS resource doesn't exist yet at the isi namespace)
@@ -1068,6 +1111,7 @@ map:LabelYouTubeIS a d2rq:ClassMap;
     d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
     d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:YouTubeTrans;
     .
 
 # http://youtube.com/ (IS resource doesn't exist yet at the isi namespace)
