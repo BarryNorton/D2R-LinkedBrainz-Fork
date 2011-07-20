@@ -744,6 +744,20 @@ map:label_alias a d2rq:PropertyBridge;
     d2rq:column "musicbrainz.label_name.name";
     .
 
+# label ARs
+# MySpace gid=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
+map:label_myspace a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Label;
+    d2rq:property owl:sameAs;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MySpaceTrans;
+    .
+
 # TODO deal with label_type
 # musicbrainz_db=# select * from musicbrainz.label_type;
 #  id |        name         
@@ -777,6 +791,25 @@ map:ArtistMyspaceIS a d2rq:ClassMap;
 # http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
 map:artist_myspace_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistMyspaceIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:dbtunemyspace;
+    .
+
+# MySpace id=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
+map:LabelMyspaceIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Label DBTune MySpace Resources"@en;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MySpaceTrans;
+    .
+
+# http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
+map:label_myspace_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelMyspaceIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbtunemyspace;
     .
