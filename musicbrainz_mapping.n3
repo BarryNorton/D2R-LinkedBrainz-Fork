@@ -44,6 +44,10 @@ map:database a d2rq:Database;
 
 # translators
 map:DBpediaTrans a d2rq:TranslationTable;
+    d2rq:javaClass "translators.DBPediaTranslator";
+    .
+
+map:WikipediaTrans a d2rq:TranslationTable;
     d2rq:javaClass "translators.WikipediaTranslator";
     .
 
@@ -186,6 +190,19 @@ map:artist_dbpedia a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:DBpediaTrans;
+    .
+
+# wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
+map:artist_wikipedia a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
     .
     
 # discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
@@ -906,6 +923,24 @@ map:artist_dbpedia_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistDBPediaIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbpedia;
+    .
+
+# Wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
+map:ArtistWikipediaIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist Wikipedia Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
+map:artist_wikipedia_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistWikipediaIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:wikipedia;
     .
 
 # Wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
