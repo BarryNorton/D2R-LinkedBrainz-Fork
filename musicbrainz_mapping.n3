@@ -319,6 +319,19 @@ map:release_group_dbpedia a d2rq:PropertyBridge;
     d2rq:translateWith map:DBpediaTrans;
     .
 
+# wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
+map:release_group_wikipedia a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
 # TODO release_group types???
 #  id |       name       
 # ----+------------------
@@ -959,6 +972,24 @@ map:release_group_dbpedia_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseGroupDBPediaIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbpedia;
+    .
+
+# Wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
+map:ReleaseGroupWikipediaIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group Wikipedia Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
+map:release_group_wikipedia_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupWikipediaIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:wikipedia;
     .
 
 # Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release labels
