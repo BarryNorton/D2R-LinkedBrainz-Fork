@@ -815,6 +815,19 @@ map:label_dbpedia a d2rq:PropertyBridge;
     d2rq:translateWith map:DBPediaTrans;
     .
 
+# Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for labels
+map:label_wikipedia a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Label;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
 # YouTube link_type.gid=d9c71059-ba9d-4135-b909-481d12cf84e3 for labels
 map:label_youtube a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Label;
@@ -1008,6 +1021,24 @@ map:label_dbpedia_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:LabelDBPediaIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbpedia;
+    .
+
+# Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release labels
+map:LabelWikipediaIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Label Wikipedia Resources"@en;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
+map:label_wikipedia_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelWikipediaIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:wikipedia;
     .
 
 # YouTube gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0 for artists
