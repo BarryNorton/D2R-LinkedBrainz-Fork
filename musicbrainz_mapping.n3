@@ -243,7 +243,7 @@ map:artist_myspace a d2rq:PropertyBridge;
 # YouTube link_type.gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0 for artists
 map:artist_youtube a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdf:seeAlso;
+    d2rq:property rdfs:seeAlso;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
@@ -788,7 +788,7 @@ map:label_dbpedia a d2rq:PropertyBridge;
 # YouTube link_type.gid=d9c71059-ba9d-4135-b909-481d12cf84e3 for labels
 map:label_youtube a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Label;
-    d2rq:property rdf:seeAlso;
+    d2rq:property rdfs:seeAlso;
     d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
     d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
