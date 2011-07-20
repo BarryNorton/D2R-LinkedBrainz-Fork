@@ -772,6 +772,19 @@ map:label_myspace a d2rq:PropertyBridge;
     d2rq:translateWith map:MySpaceTrans;
     .
 
+# Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for labels
+map:label_dbpedia a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Label;
+    d2rq:property owl:sameAs;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DBPediaTrans;
+    .
+
 # TODO deal with label_type
 # musicbrainz_db=# select * from musicbrainz.label_type;
 #  id |        name         
@@ -897,6 +910,24 @@ map:ReleaseGroupDBPediaIS a d2rq:ClassMap;
 
 map:release_group_dbpedia_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseGroupDBPediaIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:dbpedia;
+    .
+
+# Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release groups
+map:LabelDBPediaIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Label DBpedia Resources"@en;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DBpediaTrans;
+    .
+
+map:label_dbpedia_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelDBPediaIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbpedia;
     .
