@@ -240,7 +240,7 @@ map:artist_myspace a d2rq:PropertyBridge;
     d2rq:translateWith map:MySpaceTrans;
     .
 
-# YouTube link_type.gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0
+# YouTube link_type.gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0 for artists
 map:artist_youtube a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property rdf:seeAlso;
@@ -785,6 +785,18 @@ map:label_dbpedia a d2rq:PropertyBridge;
     d2rq:translateWith map:DBPediaTrans;
     .
 
+# YouTube link_type.gid=d9c71059-ba9d-4135-b909-481d12cf84e3 for labels
+map:label_youtube a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Label;
+    d2rq:property rdf:seeAlso;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    .
+
 # TODO deal with label_type
 # musicbrainz_db=# select * from musicbrainz.label_type;
 #  id |        name         
@@ -914,7 +926,7 @@ map:release_group_dbpedia_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:dbpedia;
     .
 
-# Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release groups
+# Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release labels
 map:LabelDBPediaIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Label DBpedia Resources"@en;
@@ -946,6 +958,24 @@ map:ArtistYouTubeIS a d2rq:ClassMap;
 # http://youtube.com/ (IS resource doesn't exist yet at the isi namespace)
 map:artist_youtube_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistYouTubeIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:youtube;
+    .
+
+# YouTube gid=d9c71059-ba9d-4135-b909-481d12cf84e3 for labels
+map:LabelYouTubeIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Label YouTube Resources"@en;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    .
+
+# http://youtube.com/ (IS resource doesn't exist yet at the isi namespace)
+map:label_youtube_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelYouTubeIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:youtube;
     .
