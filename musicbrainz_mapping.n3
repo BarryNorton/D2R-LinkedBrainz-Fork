@@ -439,6 +439,20 @@ map:release_tracklists a d2rq:PropertyBridge;
     d2rq:refersToClassMap map:Tracklist;
     .
 
+# release ARs
+# discogs gid=4a78823c-1c53-4176-a5f3-58026c76f2bc for releases
+map:release_discogs a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Release;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_url.entity0 => musicbrainz.release.id";
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='4a78823c-1c53-4176-a5f3-58026c76f2bc'";
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
 # FIXME: no idea why this doesn't work and why it makes everything super slow!!!
 # map:release_medium a d2rq:PropertyBridge;
 #     d2rq:belongsToClassMap map:Release;
@@ -1050,6 +1064,24 @@ map:LabelDiscogsIS a d2rq:ClassMap;
 
 map:label_discogs_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:LabelDiscogsIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:discogs;
+    .
+
+# Discogs gid=4a78823c-1c53-4176-a5f3-58026c76f2bc for releases
+map:ReleaseDiscogsIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Discogs Resources"@en;
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='4a78823c-1c53-4176-a5f3-58026c76f2bc'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
+map:release_discogs_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseDiscogsIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:discogs;
     .
