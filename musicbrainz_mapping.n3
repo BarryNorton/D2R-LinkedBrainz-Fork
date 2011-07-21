@@ -313,6 +313,19 @@ map:artist_youtube a d2rq:PropertyBridge;
     d2rq:translateWith map:YouTubeTrans;
     .
 
+# IBDb gid=5728c659-56b2-4e23-97d1-80e1f229c7d3 for artists
+map:artist_ibdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='5728c659-56b2-4e23-97d1-80e1f229c7d3'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IBDBTrans;
+    .
+
 # TODO: activity mapping
 
 #######################
@@ -1313,6 +1326,25 @@ map:ReleaseGroupIBDBIS a d2rq:ClassMap;
 # http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
 map:release_group_ibdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseGroupIBDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:ibdb;
+    .
+
+# IBDb gid=5728c659-56b2-4e23-97d1-80e1f229c7d3 for artists
+map:ArtistIBDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist IDBd Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='5728c659-56b2-4e23-97d1-80e1f229c7d3'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IBDBTrans;
+    .
+
+# http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
+map:artist_ibdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistIBDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:ibdb;
     .
