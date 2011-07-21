@@ -63,6 +63,10 @@ map:BBCTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.BBCTranslator";
     .
 
+map:DataIncubatorDiscogsTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DataIncubatorDiscogsTranslator";
+    .
+
 map:DiscogsTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.DiscogsTranslator";
     .
@@ -219,6 +223,19 @@ map:artist_wikipedia a d2rq:PropertyBridge;
 map:artist_data_incubator_discogs a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Artist;
     d2rq:property owl:sameAs;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DataIncubatorDiscogsTrans;
+    .
+
+# discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
+map:artist_discogs a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
     d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
@@ -947,7 +964,7 @@ map:ArtistDataIncubatorDiscogsIS a d2rq:ClassMap;
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'"; 	
     d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
+    d2rq:translateWith map:DataIncubatorDiscogsTrans;
     .
 
 # http://discogs.dataincubator.org/ (IS resource doesn't exist yet at the isi namespace)
@@ -955,6 +972,24 @@ map:artist_data_incubator_discogs_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistDataIncubatorDiscogsIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dataincubatordiscogs;
+    .
+
+# Discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
+map:ArtistDiscogsIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist Discogs Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
+map:artist_discogs_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistDiscogsIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:discogs;
     .
 
 # BBC gid=d028a975-000c-4525-9333-d3c8425e4b54 for artists
