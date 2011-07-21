@@ -372,6 +372,19 @@ map:release_group_wikipedia a d2rq:PropertyBridge;
     d2rq:translateWith map:WikipediaTrans;
     .
 
+# discogs gid=99e550f3-5ab4-3110-b5b9-fe01d970b126 for release groups
+map:release_group_discogs a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='99e550f3-5ab4-3110-b5b9-fe01d970b126'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
 # TODO release_group types???
 #  id |       name       
 # ----+------------------
@@ -1082,6 +1095,24 @@ map:ReleaseDiscogsIS a d2rq:ClassMap;
 
 map:release_discogs_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseDiscogsIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:discogs;
+    .
+
+# Discogs gid=99e550f3-5ab4-3110-b5b9-fe01d970b126 for release groups
+map:ReleaseGroupDiscogsIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group Discogs Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='99e550f3-5ab4-3110-b5b9-fe01d970b126'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
+map:release_group_discogs_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupDiscogsIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:discogs;
     .
