@@ -75,6 +75,10 @@ map:YouTubeTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.YouTubeTranslator";
     .
 
+map:IBDBTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.IBDBTranslator";
+    .
+
 
 ################
 # artist table #
@@ -383,6 +387,19 @@ map:release_group_discogs a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:DiscogsTrans;
+    .
+
+# IBDb gid=a7f96734-716e-48b8-9040-adc5b3256836 for release groups
+map:release_group_ibdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='a7f96734-716e-48b8-9040-adc5b3256836'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IBDBTrans;
     .
 
 # TODO release_group types???
@@ -1279,4 +1296,23 @@ map:label_youtube_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:LabelYouTubeIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:youtube;
+    .
+
+# IBDb gid=a7f96734-716e-48b8-9040-adc5b3256836 for release groups
+map:ReleaseGroupIBDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group IDBd Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='a7f96734-716e-48b8-9040-adc5b3256836'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IBDBTrans;
+    .
+
+# http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
+map:release_group_ibdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupIBDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:ibdb;
     .
