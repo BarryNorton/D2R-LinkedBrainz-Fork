@@ -894,6 +894,19 @@ map:label_youtube a d2rq:PropertyBridge;
     d2rq:translateWith map:YouTubeTrans;
     .
 
+# discogs gid=5b987f87-25bc-4a2d-b3f1-3618795b8207 for labels
+map:label_discogs a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Label;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='5b987f87-25bc-4a2d-b3f1-3618795b8207'";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
 # TODO deal with label_type
 # musicbrainz_db=# select * from musicbrainz.label_type;
 #  id |        name         
@@ -968,6 +981,7 @@ map:label_dbtune_myspace_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:dbtunemyspace;
     .
 
+# MySpace id=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
 map:LabelMyspaceIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:classDefinitionLabel "Label MySpace Resources"@en;
@@ -1018,6 +1032,24 @@ map:ArtistDiscogsIS a d2rq:ClassMap;
 
 map:artist_discogs_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistDiscogsIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:discogs;
+    .
+
+# Discogs gid=5b987f87-25bc-4a2d-b3f1-3618795b8207 for labels
+map:LabelDiscogsIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Label Discogs Resources"@en;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='5b987f87-25bc-4a2d-b3f1-3618795b8207'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:DiscogsTrans;
+    .
+
+map:label_discogs_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelDiscogsIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:discogs;
     .
