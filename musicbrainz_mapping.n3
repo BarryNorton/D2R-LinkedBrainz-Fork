@@ -44,31 +44,31 @@ map:database a d2rq:Database;
 
 # translators
 map:DBpediaTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.DBPediaTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DBPediaTranslator";
     .
 
 map:WikipediaTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.WikipediaTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.WikipediaTranslator";
     .
 
 map:DBTuneMySpaceTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.DBTuneMySpaceTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator";
     .
 
 map:MySpaceTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.MySpaceTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MySpaceTranslator";
     .
 
 map:BBCTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.BBCTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.BBCTranslator";
     .
 
 map:DiscogsTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.DiscogsTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DiscogsTranslator";
     .
 
 map:YouTubeTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.YouTubeTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.YouTubeTranslator";
     .
 
 
@@ -434,7 +434,7 @@ map:release_tracklists a d2rq:PropertyBridge;
 #     .
 
 map:MediumTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.MediumTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MediumTranslator";
     .
 
 map:release_to_release_event a d2rq:PropertyBridge;
@@ -675,7 +675,7 @@ map:duration a d2rq:PropertyBridge;
     # http://www.w3.org/TR/swbp-xsch-datatypes/#section-duration
 
 map:DurationTrans a d2rq:TranslationTable;
-    d2rq:javaClass "translators.DurationTranslator";
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DurationTranslator";
     .
 
 map:recording_to_track a d2rq:PropertyBridge;
