@@ -970,6 +970,32 @@ map:work_wikipedia a d2rq:PropertyBridge;
     d2rq:translateWith map:WikipediaTrans;
     .
 
+# IBDb gid=206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c for works
+map:work_ibdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Work;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'";
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IBDBTrans;
+    .
+
+# IOBDb gid=8845d830-fe9b-4ed6-a084-b1a3f193167a for works
+map:work_iobdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Work;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='8845d830-fe9b-4ed6-a084-b1a3f193167a'";
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IOBDBTrans;
+    .
+
 # composition event
 map:WorkComposition a d2rq:ClassMap;
     d2rq:dataStorage map:database;
@@ -1589,6 +1615,25 @@ map:artist_ibdb_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:ibdb;
     .
 
+# IBDb gid=206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c for works
+map:WorkIBDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Work IBDb Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IBDBTrans;
+    .
+
+# http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
+map:work_ibdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:WorkIBDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:ibdb;
+    .
+
 # IMDb
 ######
 
@@ -1667,6 +1712,25 @@ map:ArtistIOBDBIS a d2rq:ClassMap;
 # http://lortel.org/ (IS resource doesn't exist yet at the isi namespace)
 map:artist_iobdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistIOBDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:iobdb;
+    .
+
+# IOBDb gid=689043e3-2b9e-47ba-ad86-2742589e0743 for artists
+map:WorkIOBDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Work IOBDb Resources"@en;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IOBDBTrans;
+    .
+
+# http://lortel.org/ (IS resource doesn't exist yet at the isi namespace)
+map:work_iobdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:WorkIOBDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:iobdb;
     .
