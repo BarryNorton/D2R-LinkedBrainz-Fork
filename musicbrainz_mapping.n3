@@ -95,6 +95,10 @@ map:PureVolumeTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.PureVolumeTranslator";
     .
 
+map:VGMDBTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.VGMDBTranslator";
+    .
+
 ################
 # artist table #
 ################
@@ -391,6 +395,19 @@ map:artist_purevolume a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:PureVolumeTrans;
+    .
+
+# VGMdb gid=0af15ab3-c615-46d6-b95b-a5fcd2a92ed9 for artists
+map:artist_vgmdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:VGMDBTrans;
     .
 
 # TODO: activity mapping
@@ -1616,4 +1633,26 @@ map:artist_purevolume_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistPureVolumeIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:purevolume;
+    .
+
+# VGMdb
+#######
+
+# VGMdb gid=0af15ab3-c615-46d6-b95b-a5fcd2a92ed9 for artists
+map:ArtistVGMDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist VGMdb Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:VGMDBTrans;
+    .
+
+# http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
+map:artist_vgmdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistVGMDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:vgmdb;
     .
