@@ -363,6 +363,19 @@ map:artist_iobdb a d2rq:PropertyBridge;
     d2rq:translateWith map:IOBDBTrans;
     .
 
+# MusicMoz gid=ded9a80a-e6de-4831-880c-c78b9981b54b for artists
+map:artist_musicmoz a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='ded9a80a-e6de-4831-880c-c78b9981b54b'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MusicMozTrans;
+    .
+
 # TODO: activity mapping
 
 #######################
@@ -1543,6 +1556,25 @@ map:ReleaseGroupMusicMozIS a d2rq:ClassMap;
 # http://musicmoz.org/ (IS resource doesn't exist yet at the isi namespace)
 map:release_group_musicmoz_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseGroupMusicMozIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:musicmoz;
+    .
+
+# MusicMoz gid=ded9a80a-e6de-4831-880c-c78b9981b54b for artists
+map:ArtistMusicMozIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist MusicMoz Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='ded9a80a-e6de-4831-880c-c78b9981b54b'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MusicMozTrans;
+    .
+
+# http://musicmoz.org/ (IS resource doesn't exist yet at the isi namespace)
+map:artist_musicmoz_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistMusicMozIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:musicmoz;
     .
