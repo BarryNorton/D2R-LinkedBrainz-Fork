@@ -87,6 +87,9 @@ map:IOBDBTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.IOBDBTranslator";
     .
 
+map:MusicMozTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MusicMozTranslator";
+    .
 
 ################
 # artist table #
@@ -473,6 +476,19 @@ map:release_group_iobdb a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:IOBDBTrans;
+    .
+
+# MusicMoz gid=d111c58d-0d9b-4675-99c1-ddc5a8e01847 for release groups
+map:release_group_musicmoz a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='d111c58d-0d9b-4675-99c1-ddc5a8e01847'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MusicMozTrans;
     .
 
 # TODO release_group types???
@@ -1507,4 +1523,26 @@ map:artist_iobdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistIOBDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:iobdb;
+    .
+
+# MusicMoz
+##########
+
+# MusicMoz gid=d111c58d-0d9b-4675-99c1-ddc5a8e01847 for release groups
+map:ReleaseGroupMusicMozIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group MusicMoz Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='d111c58d-0d9b-4675-99c1-ddc5a8e01847'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:MusicMozTrans;
+    .
+
+# http://musicmoz.org/ (IS resource doesn't exist yet at the isi namespace)
+map:release_group_musicmoz_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupMusicMozIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:musicmoz;
     .
