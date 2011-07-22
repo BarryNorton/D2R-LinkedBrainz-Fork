@@ -1100,6 +1100,19 @@ map:label_discogs a d2rq:PropertyBridge;
     d2rq:translateWith map:DiscogsTrans;
     .
 
+# VGMdb gid=8a2d3e55-d291-4b99-87a0-c59c6b121762 for labels
+map:label_vgmdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Label;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='8a2d3e55-d291-4b99-87a0-c59c6b121762'";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:VGMDBTrans;
+    .
+
 # TODO deal with label_type
 # musicbrainz_db=# select * from musicbrainz.label_type;
 #  id |        name         
@@ -1685,6 +1698,25 @@ map:ReleaseVGMDBIS a d2rq:ClassMap;
 # http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
 map:release_vgmdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseVGMDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:vgmdb;
+    .
+
+# VGMdb gid=8a2d3e55-d291-4b99-87a0-c59c6b121762 for labels
+map:LabelVGMDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Label VGMdb Resources"@en;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='8a2d3e55-d291-4b99-87a0-c59c6b121762'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:VGMDBTrans;
+    .
+
+# http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
+map:label_vgmdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:LabelVGMDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:vgmdb;
     .
