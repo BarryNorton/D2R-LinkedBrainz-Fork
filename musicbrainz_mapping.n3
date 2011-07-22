@@ -957,6 +957,19 @@ map:work_dbpedia a d2rq:PropertyBridge;
     d2rq:translateWith map:DBpediaTrans;
     .
 
+# wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
+map:work_wikipedia a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Work;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'";
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
 # composition event
 map:WorkComposition a d2rq:ClassMap;
     d2rq:dataStorage map:database;
@@ -1461,7 +1474,7 @@ map:label_wikipedia_is a d2rq:PropertyBridge;
 # Wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
 map:WorkDBPediaIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Work Wikipedia Resources"@en;
+    d2rq:classDefinitionLabel "Work DBPedia Resources"@en;
     d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
@@ -1474,6 +1487,24 @@ map:work_dbpedia_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:WorkDBPediaIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:dbpedia;
+    .
+
+# Wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
+map:WorkWikipediaIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Work Wikipedia Resources"@en;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:WikipediaTrans;
+    .
+
+map:work_wikipedia_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:WorkWikipediaIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:wikipedia;
     .
 
 # YouTube
