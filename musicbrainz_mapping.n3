@@ -79,6 +79,10 @@ map:IBDBTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.IBDBTranslator";
     .
 
+map:IMDBTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.IMDBTranslator";
+    .
+
 
 ################
 # artist table #
@@ -413,6 +417,19 @@ map:release_group_ibdb a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:IBDBTrans;
+    .
+
+# IMDb gid=85b0a010-3237-47c7-8476-6fcefd4761af for release groups
+map:release_group_imdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='85b0a010-3237-47c7-8476-6fcefd4761af'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IMDBTrans;
     .
 
 # TODO release_group types???
@@ -982,6 +999,9 @@ map:label_discogs a d2rq:PropertyBridge;
 # Information Services / Provenance #
 #####################################
 
+# DBTune Myspace + MySpace
+##########################
+
 # MySpace id=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
 map:ArtistDBTuneMyspaceIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
@@ -1055,6 +1075,9 @@ map:label_myspace_is a d2rq:PropertyBridge;
     d2rq:property is:info_service;
     d2rq:constantValue isi:myspace;
     .
+
+# DataIncubator Discogs + Discogs
+#################################
 
 # Discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
 map:ArtistDataIncubatorDiscogsIS a d2rq:ClassMap;
@@ -1147,6 +1170,9 @@ map:release_group_discogs_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:discogs;
     .
 
+# BBC
+#####
+
 # BBC gid=d028a975-000c-4525-9333-d3c8425e4b54 for artists
 map:ArtistBBCIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
@@ -1164,6 +1190,9 @@ map:artist_bbc_is a d2rq:PropertyBridge;
     d2rq:property is:info_service;
     d2rq:constantValue isi:bbc;
     .
+
+# DBPedia + Wikipedia
+#####################
 
 # Wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
 map:ArtistDBPediaIS a d2rq:ClassMap;
@@ -1273,6 +1302,9 @@ map:label_wikipedia_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:wikipedia;
     .
 
+# YouTube
+#########
+
 # YouTube gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0 for artists
 map:ArtistYouTubeIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
@@ -1311,10 +1343,13 @@ map:label_youtube_is a d2rq:PropertyBridge;
     d2rq:constantValue isi:youtube;
     .
 
+# IBDb
+######
+
 # IBDb gid=a7f96734-716e-48b8-9040-adc5b3256836 for release groups
 map:ReleaseGroupIBDBIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group IDBd Resources"@en;
+    d2rq:classDefinitionLabel "Release Group IBDb Resources"@en;
     d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
@@ -1333,7 +1368,7 @@ map:release_group_ibdb_is a d2rq:PropertyBridge;
 # IBDb gid=5728c659-56b2-4e23-97d1-80e1f229c7d3 for artists
 map:ArtistIBDBIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist IDBd Resources"@en;
+    d2rq:classDefinitionLabel "Artist IBDb Resources"@en;
     d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
@@ -1347,4 +1382,26 @@ map:artist_ibdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistIBDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:ibdb;
+    .
+
+# IMDb
+######
+
+# IMDb gid=85b0a010-3237-47c7-8476-6fcefd4761af for release groups
+map:ReleaseGroupIMDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group IMBd Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='85b0a010-3237-47c7-8476-6fcefd4761af'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IMDBTrans;
+    .
+
+# http://imdb.com/ (IS resource doesn't exist yet at the isi namespace)
+map:release_group_imdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupIMDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:imdb;
     .
