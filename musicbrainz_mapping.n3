@@ -330,6 +330,19 @@ map:artist_ibdb a d2rq:PropertyBridge;
     d2rq:translateWith map:IBDBTrans;
     .
 
+# IMDb gid=94c8b0cc-4477-4106-932c-da60e63de61c for artists
+map:artist_imdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Artist;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='94c8b0cc-4477-4106-932c-da60e63de61c'";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IMDBTrans;
+    .
+
 # TODO: activity mapping
 
 #######################
@@ -1390,7 +1403,7 @@ map:artist_ibdb_is a d2rq:PropertyBridge;
 # IMDb gid=85b0a010-3237-47c7-8476-6fcefd4761af for release groups
 map:ReleaseGroupIMDBIS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group IMBd Resources"@en;
+    d2rq:classDefinitionLabel "Release Group IMDb Resources"@en;
     d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
     d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
     d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
@@ -1402,6 +1415,25 @@ map:ReleaseGroupIMDBIS a d2rq:ClassMap;
 # http://imdb.com/ (IS resource doesn't exist yet at the isi namespace)
 map:release_group_imdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseGroupIMDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:imdb;
+    .
+
+# IMDb gid=94c8b0cc-4477-4106-932c-da60e63de61c for artists
+map:ArtistIMDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Artist IMDb Resources"@en;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='94c8b0cc-4477-4106-932c-da60e63de61c'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IMDBTrans;
+    .
+
+# http://imdb.com/ (IS resource doesn't exist yet at the isi namespace)
+map:artist_imdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ArtistIMDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:imdb;
     .
