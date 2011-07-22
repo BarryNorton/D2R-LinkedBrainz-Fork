@@ -619,6 +619,19 @@ map:release_discogs a d2rq:PropertyBridge;
     d2rq:translateWith map:DiscogsTrans;
     .
 
+# VGMdb gid=6af0134a-df6a-425a-96e2-895f9cd342ba for releases
+map:release_vgmdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Release;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_url.entity0 => musicbrainz.release.id";
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='6af0134a-df6a-425a-96e2-895f9cd342ba'";
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:VGMDBTrans;
+    .
+
 # FIXME: no idea why this doesn't work and why it makes everything super slow!!!
 # map:release_medium a d2rq:PropertyBridge;
 #     d2rq:belongsToClassMap map:Release;
@@ -1653,6 +1666,25 @@ map:ArtistVGMDBIS a d2rq:ClassMap;
 # http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
 map:artist_vgmdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistVGMDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:vgmdb;
+    .
+
+# VGMdb gid=6af0134a-df6a-425a-96e2-895f9cd342ba for releases
+map:ReleaseVGMDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release VGMdb Resources"@en;
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='6af0134a-df6a-425a-96e2-895f9cd342ba'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:VGMDBTrans;
+    .
+
+# http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
+map:release_vgmdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseVGMDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:vgmdb;
     .
