@@ -83,6 +83,10 @@ map:IMDBTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.IMDBTranslator";
     .
 
+map:IOBDBTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.IOBDBTranslator";
+    .
+
 
 ################
 # artist table #
@@ -443,6 +447,19 @@ map:release_group_imdb a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:IMDBTrans;
+    .
+
+# IOBDb gid=fd87657e-aa2f-44ad-b5d8-d97c0c938a4d for release groups
+map:release_group_iobdb a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroup;
+    d2rq:property rdfs:seeAlso;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:condition "musicbrainz.link_type.gid='fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IOBDBTrans;
     .
 
 # TODO release_group types???
@@ -1436,4 +1453,26 @@ map:artist_imdb_is a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ArtistIMDBIS;
     d2rq:property is:info_service;
     d2rq:constantValue isi:imdb;
+    .
+
+# IOBDb
+#######
+
+# IOBDb gid=fd87657e-aa2f-44ad-b5d8-d97c0c938a4d for release groups
+map:ReleaseGroupIOBDBIS a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:classDefinitionLabel "Release Group IOBDb Resources"@en;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
+    d2rq:condition "musicbrainz.link_type.gid='fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'"; 	
+    d2rq:uriColumn "musicbrainz.url.url";
+    d2rq:translateWith map:IOBDBTrans;
+    .
+
+# http://lortel.org/ (IS resource doesn't exist yet at the isi namespace)
+map:release_group_iobdb_is a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReleaseGroupIOBDBIS;
+    d2rq:property is:info_service;
+    d2rq:constantValue isi:iobdb;
     .
