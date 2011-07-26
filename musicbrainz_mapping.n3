@@ -412,12 +412,12 @@ map:artist_vgmdb a d2rq:PropertyBridge;
 
 # TODO: activity mapping
 
-#######################
-# release_group table #
-#######################
+########################################
+# release_group table (mo:SignalGroup) #
+########################################
 map:ReleaseGroup a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:uriPattern "release-group/@@musicbrainz.release_group.gid@@#_";
+    d2rq:uriPattern "signal-group/@@musicbrainz.release_group.gid@@#_";
     d2rq:class mo:SignalGroup;
     d2rq:classDefinitionLabel "Signal Group"@en;
     .
@@ -553,6 +553,8 @@ map:release_group_musicmoz a d2rq:PropertyBridge;
 #  10 | Live
 #  11 | Remix
 #  12 | Other
+#
+# issue raised at https://github.com/BarryNorton/D2R-LinkedBrainz-Fork/issues/6
 
 
 
@@ -597,12 +599,11 @@ map:release_record_label a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.release_label.label => musicbrainz.label.id";
     .
 
-map:release_tracklists a d2rq:PropertyBridge;
+map:release_mediums a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Release;
     d2rq:property mo:record;
     d2rq:join "musicbrainz.medium.release => musicbrainz.release.id";
-    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id";
-    d2rq:refersToClassMap map:Tracklist;
+    d2rq:refersToClassMap map:Medium;
     .
 
 # release ARs
@@ -631,17 +632,6 @@ map:release_vgmdb a d2rq:PropertyBridge;
     d2rq:uriColumn "musicbrainz.url.url";
     d2rq:translateWith map:VGMDBTrans;
     .
-
-# FIXME: no idea why this doesn't work and why it makes everything super slow!!!
-# map:release_medium a d2rq:PropertyBridge;
-#     d2rq:belongsToClassMap map:Release;
-#     d2rq:property mo:media_type;
-#     d2rq:join "musicbrainz.medium.release => musicbrainz.release.id";
-#     d2rq:join "musicbrainz.medium.format => musicbrainz.medium_format.id";
-#     d2rq:uriColumn "musicbrainz.medium_format.name";
-#     .
-#     d2rq:translateWith map:MediumTrans;
-#     .
 
 map:MediumTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.MediumTranslator";
@@ -756,29 +746,40 @@ map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge;
 # (4 rows)
 
     
-#############
-# Tracklist #
-#############
-map:Tracklist a d2rq:ClassMap;
+######################
+# Medium (mo:Record) #
+######################
+map:Medium a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mo:Record;
     d2rq:classDefinitionLabel "Record"@en;
-    d2rq:uriPattern "tracklist/@@musicbrainz.tracklist.id@@#_";
+    d2rq:uriPattern "record/@@musicbrainz.medium.id@@#_";
     .
 
-map:tracklist_track a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Tracklist;
+map:medium_track a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Medium;
     d2rq:property mo:track;
     d2rq:refersToClassMap map:Track;
+    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id";	
     d2rq:join "musicbrainz.track.tracklist => musicbrainz.tracklist.id";
     .
 
 map:tracklist_track_count a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Tracklist;
+    d2rq:belongsToClassMap map:Medium;
     d2rq:property mo:track_count ;
     d2rq:datatype xsd:int;
+    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id";	
     d2rq:column "musicbrainz.tracklist.track_count";
     .
+
+# FIXME: no idea why this doesn't work and why it makes everything super slow!!!
+map:release_medium a d2rq:PropertyBridge;
+     d2rq:belongsToClassMap map:Medium;
+     d2rq:property mo:media_type;
+     d2rq:join "musicbrainz.medium.format => musicbrainz.medium_format.id";
+     d2rq:uriColumn "musicbrainz.medium_format.id";
+     d2rq:translateWith map:MediumTrans;
+     .
 
 #########
 # Track #
