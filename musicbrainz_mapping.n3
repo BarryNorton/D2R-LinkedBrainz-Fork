@@ -609,6 +609,7 @@ map:release_mediums a d2rq:PropertyBridge;
     d2rq:refersToClassMap map:Medium;
     .
 
+# TODO: issue raised on the MO repo, see https://github.com/moustaki/motools/issues/2
 map:release_release_status a d2rq:PropertyBridge;
      d2rq:belongsToClassMap map:Release;
      d2rq:property mo:release_status;
@@ -617,24 +618,7 @@ map:release_release_status a d2rq:PropertyBridge;
      d2rq:translateWith map:ReleaseStatusTrans;
      .
 
-# TODO release_group types???
-#  id |       name       
-# ----+------------------
-#   1 | Non-Album Tracks
-#   2 | Album
-#   3 | Single
-#   4 | EP
-#   5 | Compilation
-#   6 | Soundtrack
-#   7 | Spokenword
-#   8 | Interview
-#   9 | Audiobook
-#  10 | Live
-#  11 | Remix
-#  12 | Other
-#
 # issue raised at https://github.com/BarryNorton/D2R-LinkedBrainz-Fork/issues/6
-
 map:release_release_type a d2rq:PropertyBridge;
      d2rq:belongsToClassMap map:Release;
      d2rq:property mo:release_type;
@@ -643,7 +627,6 @@ map:release_release_type a d2rq:PropertyBridge;
      d2rq:uriColumn "musicbrainz.release_group_type.id";
      d2rq:translateWith map:ReleaseTypeTrans;
      .
-
 
 # release ARs
 # discogs gid=4a78823c-1c53-4176-a5f3-58026c76f2bc for releases
@@ -769,6 +752,8 @@ map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge;
 #   4 | Paper Sleeve
 #   5 | Other
 # (5 rows)
+#
+# UPDATE: issue raised on the MO repo, see https://github.com/moustaki/motools/issues/4
    
 ############################
 # medium table (mo:Record) #
@@ -805,9 +790,10 @@ map:medium_media_type a d2rq:PropertyBridge;
      d2rq:translateWith map:MediumTrans;
      .
 
-#########
-# Track #
-#########
+###############
+# track table #
+###############
+
 map:Track a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     # d2rq:bNodeIdColumns "musicbrainz.track.id";
@@ -846,9 +832,10 @@ map:track_position a d2rq:PropertyBridge;
     d2rq:column "musicbrainz.track.position";
     .
 
-#############
-# Recording #
-#############
+###################
+# recording table #
+###################
+
 map:Recording a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mo:Signal;
@@ -865,7 +852,7 @@ map:musicbrainz_guid_recording a d2rq:PropertyBridge;
 
 map:recording_name a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
-    d2rq:property dct:title, rdfs:label;
+    d2rq:property dct:title;
     d2rq:join "musicbrainz.recording.name => musicbrainz.track_name.id";
     d2rq:column "musicbrainz.track_name.name";
     .
@@ -903,11 +890,8 @@ map:duration a d2rq:PropertyBridge;
     d2rq:column "musicbrainz.recording.length";
     d2rq:condition "musicbrainz.recording.length IS NOT NULL";
     d2rq:translateWith map:DurationTrans;
-    d2rq:datatype xsd:duration;
+    d2rq:datatype xsd:float;
     .
-
-    # TODO: perhaps use xdt:dayTimeDuration type?
-    # http://www.w3.org/TR/swbp-xsch-datatypes/#section-duration
 
 map:recording_to_track a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
@@ -917,9 +901,10 @@ map:recording_to_track a d2rq:PropertyBridge;
     .
     
 
-########
-# Work #
-########
+##############
+# work table #
+##############
+
 map:Work a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mo:MusicalWork;
@@ -1051,11 +1036,12 @@ map:work_composed_by a d2rq:PropertyBridge;
 #  id | name 
 # ----+------
 # (0 rows)
+#
+# UPDATE: issue raised on the MO repo, see https://github.com/moustaki/motools/issues/5
 
-
-#########
-# Label #
-#########
+###############
+# label table #
+###############
 
 map:Label a d2rq:ClassMap;
     d2rq:dataStorage map:database;
@@ -1209,6 +1195,8 @@ map:label_homepage a d2rq:PropertyBridge;
 #   6 | Reissue Production
 #   7 | Publisher
 # (7 rows)
+#
+# UPDATE: issue raised on the MO repo, see https://github.com/moustaki/motools/issues/6
 
 
 #####################################
