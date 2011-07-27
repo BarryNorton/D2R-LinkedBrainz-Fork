@@ -42,7 +42,10 @@ map:database a d2rq:Database;
     d2r:vocabularyIncludeInstances true;    
     .
 
-# translators
+####################################
+# translation tables (translators) #
+####################################
+
 map:DBpediaTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.DBPediaTranslator";
     .
@@ -97,6 +100,18 @@ map:PureVolumeTrans a d2rq:TranslationTable;
 
 map:VGMDBTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.VGMDBTranslator";
+    .
+
+map:MediumTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MediumTranslator";
+    .
+
+map:DurationTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DurationTranslator";
+    .
+
+map:ReleaseStatusTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseStatusTranslator";
     .
 
 ################
@@ -633,11 +648,7 @@ map:release_vgmdb a d2rq:PropertyBridge;
     d2rq:translateWith map:VGMDBTrans;
     .
 
-map:MediumTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.MediumTranslator";
-    .
-
-map:release_to_release_event a d2rq:PropertyBridge;
+map:release_event_to_release a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:ReleaseEvent;
     d2rq:property mo:release;
     d2rq:refersToClassMap map:Release;
@@ -745,6 +756,14 @@ map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge;
 #   4 | Pseudo-Release
 # (4 rows)
 
+map:release_release_status a d2rq:PropertyBridge;
+     d2rq:belongsToClassMap map:Release;
+     d2rq:property mo:release_status;
+     d2rq:join "musicbrainz.release.status => musicbrainz.release_status.id";
+     d2rq:uriColumn "musicbrainz.release_status.id";
+     d2rq:translateWith map:ReleaseStatusTrans;
+     .
+
     
 ######################
 # Medium (mo:Record) #
@@ -764,7 +783,7 @@ map:medium_track a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.track.tracklist => musicbrainz.tracklist.id";
     .
 
-map:tracklist_track_count a d2rq:PropertyBridge;
+map:medium_track_count a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Medium;
     d2rq:property mo:track_count ;
     d2rq:datatype xsd:int;
@@ -772,8 +791,7 @@ map:tracklist_track_count a d2rq:PropertyBridge;
     d2rq:column "musicbrainz.tracklist.track_count";
     .
 
-# FIXME: no idea why this doesn't work and why it makes everything super slow!!!
-map:release_medium a d2rq:PropertyBridge;
+map:medium_media_type a d2rq:PropertyBridge;
      d2rq:belongsToClassMap map:Medium;
      d2rq:property mo:media_type;
      d2rq:join "musicbrainz.medium.format => musicbrainz.medium_format.id";
@@ -884,10 +902,6 @@ map:duration a d2rq:PropertyBridge;
 
     # TODO: perhaps use xdt:dayTimeDuration type?
     # http://www.w3.org/TR/swbp-xsch-datatypes/#section-duration
-
-map:DurationTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.DurationTranslator";
-    .
 
 map:recording_to_track a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
