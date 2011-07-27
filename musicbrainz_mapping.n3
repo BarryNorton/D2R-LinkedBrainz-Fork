@@ -114,9 +114,15 @@ map:ReleaseStatusTrans a d2rq:TranslationTable;
     d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseStatusTranslator";
     .
 
+map:ReleaseTypeTrans a d2rq:TranslationTable;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseTypeTranslator";
+    .
+
+
 ################
 # artist table #
 ################
+
 map:Artist a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
 	d2rq:uriPattern "artist/@@musicbrainz.artist.gid@@#_";
@@ -430,6 +436,7 @@ map:artist_vgmdb a d2rq:PropertyBridge;
 ########################################
 # release_group table (mo:SignalGroup) #
 ########################################
+
 map:ReleaseGroup a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:uriPattern "signal-group/@@musicbrainz.release_group.gid@@#_";
@@ -553,29 +560,10 @@ map:release_group_musicmoz a d2rq:PropertyBridge;
     d2rq:translateWith map:MusicMozTrans;
     .
 
-# TODO release_group types???
-#  id |       name       
-# ----+------------------
-#   1 | Non-Album Tracks
-#   2 | Album
-#   3 | Single
-#   4 | EP
-#   5 | Compilation
-#   6 | Soundtrack
-#   7 | Spokenword
-#   8 | Interview
-#   9 | Audiobook
-#  10 | Live
-#  11 | Remix
-#  12 | Other
-#
-# issue raised at https://github.com/BarryNorton/D2R-LinkedBrainz-Fork/issues/6
+################################################
+# release table (mo:Release + mo:ReleaseEvent) #
+################################################
 
-
-
-###########
-# Release #
-###########
 map:Release a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mo:Release;
@@ -620,6 +608,42 @@ map:release_mediums a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.medium.release => musicbrainz.release.id";
     d2rq:refersToClassMap map:Medium;
     .
+
+map:release_release_status a d2rq:PropertyBridge;
+     d2rq:belongsToClassMap map:Release;
+     d2rq:property mo:release_status;
+     d2rq:join "musicbrainz.release.status => musicbrainz.release_status.id";
+     d2rq:uriColumn "musicbrainz.release_status.id";
+     d2rq:translateWith map:ReleaseStatusTrans;
+     .
+
+# TODO release_group types???
+#  id |       name       
+# ----+------------------
+#   1 | Non-Album Tracks
+#   2 | Album
+#   3 | Single
+#   4 | EP
+#   5 | Compilation
+#   6 | Soundtrack
+#   7 | Spokenword
+#   8 | Interview
+#   9 | Audiobook
+#  10 | Live
+#  11 | Remix
+#  12 | Other
+#
+# issue raised at https://github.com/BarryNorton/D2R-LinkedBrainz-Fork/issues/6
+
+map:release_release_type a d2rq:PropertyBridge;
+     d2rq:belongsToClassMap map:Release;
+     d2rq:property mo:release_type;
+     d2rq:join "musicbrainz.release.release_group => musicbrainz.release_group.id";
+     d2rq:join "musicbrainz.release_group.type => musicbrainz.release_group_type.id";
+     d2rq:uriColumn "musicbrainz.release_group_type.id";
+     d2rq:translateWith map:ReleaseTypeTrans;
+     .
+
 
 # release ARs
 # discogs gid=4a78823c-1c53-4176-a5f3-58026c76f2bc for releases
@@ -745,29 +769,11 @@ map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge;
 #   4 | Paper Sleeve
 #   5 | Other
 # (5 rows)
+   
+############################
+# medium table (mo:Record) #
+############################
 
-# TODO deal with release_status ???
-# musicbrainz_db=# select * from musicbrainz.release_status;
-#  id |      name      
-# ----+----------------
-#   1 | Official
-#   2 | Promotion
-#   3 | Bootleg
-#   4 | Pseudo-Release
-# (4 rows)
-
-map:release_release_status a d2rq:PropertyBridge;
-     d2rq:belongsToClassMap map:Release;
-     d2rq:property mo:release_status;
-     d2rq:join "musicbrainz.release.status => musicbrainz.release_status.id";
-     d2rq:uriColumn "musicbrainz.release_status.id";
-     d2rq:translateWith map:ReleaseStatusTrans;
-     .
-
-    
-######################
-# Medium (mo:Record) #
-######################
 map:Medium a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mo:Record;
