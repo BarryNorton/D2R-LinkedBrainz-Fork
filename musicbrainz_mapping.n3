@@ -19,6 +19,8 @@
 @prefix event: <http://purl.org/NET/c4dm/event.owl#> .
 @prefix is: <http://purl.org/ontology/is/core#> .
 @prefix isi: <http://purl.org/ontology/is/inst/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
 
 # connection stuff
 map:database a d2rq:Database ;
@@ -382,7 +384,150 @@ map:artist_vgmdb a d2rq:PropertyBridge ;
     d2rq:uriColumn "musicbrainz.url.url" ;
     d2rq:translateWith map:VGMDBTrans .
 
-# TODO: activity mapping
+# artist activity
+#################
+
+map:ArtistActivity a d2rq:ClassMap ;
+	d2rq:dataStorage map:database ;
+	d2rq:bNodeIdColumns "musicbrainz.artist.id" ;
+	d2rq:class mo:Activity ;
+	d2rq:classDefinitionLabel "Artist Activity"@en .
+
+map:artist_artist_activity a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property mo:activity ;
+    d2rq:refersToClassMap map:ArtistActivity .
+
+map:ArtistActivityTI a d2rq:ClassMap ;
+	d2rq:dataStorage map:database ;
+	d2rq:bNodeIdColumns "musicbrainz.artist.id" ;
+	d2rq:class time:Interval ;
+	d2rq:classDefinitionLabel "Artist Activity Time Interval"@en .
+
+map:artist_activity_artist_activity_tl a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivity ;
+    d2rq:property event:time ;
+    d2rq:refersToClassMap map:ArtistActivityTI .
+
+map:artist_activity_begin_date_year a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:column "musicbrainz.artist.begin_date_year" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month IS NULL" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NULL" ;
+    d2rq:datatype xsd:gYear .
+
+map:artist_activity_begin_date_year_month a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.artist.begin_date_year@@-@@musicbrainz.artist.begin_date_month@@" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month > 9" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:artist_activity_begin_date_year_month_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.artist.begin_date_year@@-0@@musicbrainz.artist.begin_date_month@@" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month < 10" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:artist_activity_begin_date_full_no_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.artist.begin_date_year@@-@@musicbrainz.artist.begin_date_month@@-@@musicbrainz.artist.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month > 9" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_begin_date_full_with_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.artist.begin_date_year@@-@@musicbrainz.artist.begin_date_month@@-0@@musicbrainz.artist.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month > 9" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day < 10" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_begin_date_full_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.artist.begin_date_year@@-0@@musicbrainz.artist.begin_date_month@@-@@musicbrainz.artist.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month < 10" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_begin_date_full_with_month_and_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.artist.begin_date_year@@-0@@musicbrainz.artist.begin_date_month@@-0@@musicbrainz.artist.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.begin_date_month < 10" ;
+    d2rq:condition "musicbrainz.artist.begin_date_day < 10" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_end_date_year a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:column "musicbrainz.artist.end_date_year" ;
+    d2rq:condition "musicbrainz.artist.end_date_month IS NULL" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NULL" ;
+    d2rq:datatype xsd:gYear .
+
+map:artist_activity_end_date_year_month a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.artist.end_date_year@@-@@musicbrainz.artist.end_date_month@@" ;
+    d2rq:condition "musicbrainz.artist.end_date_month > 9" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:artist_activity_end_date_year_month_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.artist.end_date_year@@-0@@musicbrainz.artist.end_date_month@@" ;
+    d2rq:condition "musicbrainz.artist.end_date_month < 10" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:artist_activity_end_date_full_no_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.artist.end_date_year@@-@@musicbrainz.artist.end_date_month@@-@@musicbrainz.artist.end_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.end_date_month > 9" ;
+    d2rq:condition "musicbrainz.artist.end_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_end_date_full_with_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.artist.end_date_year@@-@@musicbrainz.artist.end_date_month@@-0@@musicbrainz.artist.end_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.end_date_month > 9" ;
+    d2rq:condition "musicbrainz.artist.end_date_day < 10" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_end_date_full_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.artist.end_date_year@@-0@@musicbrainz.artist.end_date_month@@-@@musicbrainz.artist.end_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.end_date_month < 10" ;
+    d2rq:condition "musicbrainz.artist.end_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:artist_activity_end_date_full_with_month_and_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.artist.end_date_year@@-0@@musicbrainz.artist.end_date_month@@-0@@musicbrainz.artist.end_date_day@@" ;
+    d2rq:condition "musicbrainz.artist.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.artist.end_date_month < 10" ;
+    d2rq:condition "musicbrainz.artist.end_date_day < 10" ;
+    d2rq:datatype xsd:date .
 
 ########################################
 # release_group table (mo:SignalGroup) #
@@ -1124,6 +1269,151 @@ map:label_homepage a d2rq:PropertyBridge ;
     d2rq:condition "musicbrainz.link_type.gid='fe108f43-acb9-4ad1-8be3-57e6ec5b17b6'" ;
     d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
     d2rq:uriColumn "musicbrainz.url.url" .
+
+# label activity
+#################
+
+map:LabelActivity a d2rq:ClassMap ;
+	d2rq:dataStorage map:database ;
+	d2rq:bNodeIdColumns "musicbrainz.label.id" ;
+	d2rq:class mo:Activity ;
+	d2rq:classDefinitionLabel "Label Activity"@en .
+
+map:label_label_activity a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property mo:activity ;
+    d2rq:refersToClassMap map:LabelActivity .
+
+map:LabelActivityTI a d2rq:ClassMap ;
+	d2rq:dataStorage map:database ;
+	d2rq:bNodeIdColumns "musicbrainz.label.id" ;
+	d2rq:class time:Interval ;
+	d2rq:classDefinitionLabel "Label Activity Time Interval"@en .
+
+map:label_activity_label_activity_tl a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivity ;
+    d2rq:property event:time ;
+    d2rq:refersToClassMap map:LabelActivityTI .
+
+map:label_activity_begin_date_year a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:column "musicbrainz.label.begin_date_year" ;
+    d2rq:condition "musicbrainz.label.begin_date_month IS NULL" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NULL" ;
+    d2rq:datatype xsd:gYear .
+
+map:label_activity_begin_date_year_month a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.label.begin_date_year@@-@@musicbrainz.label.begin_date_month@@" ;
+    d2rq:condition "musicbrainz.label.begin_date_month > 9" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:label_activity_begin_date_year_month_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.label.begin_date_year@@-0@@musicbrainz.label.begin_date_month@@" ;
+    d2rq:condition "musicbrainz.label.begin_date_month < 10" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:label_activity_begin_date_full_no_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.label.begin_date_year@@-@@musicbrainz.label.begin_date_month@@-@@musicbrainz.label.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.begin_date_month > 9" ;
+    d2rq:condition "musicbrainz.label.begin_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_begin_date_full_with_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.label.begin_date_year@@-@@musicbrainz.label.begin_date_month@@-0@@musicbrainz.label.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.begin_date_month > 9" ;
+    d2rq:condition "musicbrainz.label.begin_date_day < 10" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_begin_date_full_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.label.begin_date_year@@-0@@musicbrainz.label.begin_date_month@@-@@musicbrainz.label.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.begin_date_month < 10" ;
+    d2rq:condition "musicbrainz.label.begin_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_begin_date_full_with_month_and_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:start ;
+    d2rq:pattern "@@musicbrainz.label.begin_date_year@@-0@@musicbrainz.label.begin_date_month@@-0@@musicbrainz.label.begin_date_day@@" ;
+    d2rq:condition "musicbrainz.label.begin_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.begin_date_month < 10" ;
+    d2rq:condition "musicbrainz.label.begin_date_day < 10" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_end_date_year a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:column "musicbrainz.label.end_date_year" ;
+    d2rq:condition "musicbrainz.label.end_date_month IS NULL" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NULL" ;
+    d2rq:datatype xsd:gYear .
+
+map:label_activity_end_date_year_month a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.label.end_date_year@@-@@musicbrainz.label.end_date_month@@" ;
+    d2rq:condition "musicbrainz.label.end_date_month > 9" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:label_activity_end_date_year_month_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.label.end_date_year@@-0@@musicbrainz.label.end_date_month@@" ;
+    d2rq:condition "musicbrainz.label.end_date_month < 10" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
+
+map:label_activity_end_date_full_no_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.label.end_date_year@@-@@musicbrainz.label.end_date_month@@-@@musicbrainz.label.end_date_day@@" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.end_date_month > 9" ;
+    d2rq:condition "musicbrainz.label.end_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_end_date_full_with_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.label.end_date_year@@-@@musicbrainz.label.end_date_month@@-0@@musicbrainz.label.end_date_day@@" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.end_date_month > 9" ;
+    d2rq:condition "musicbrainz.label.end_date_day < 10" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_end_date_full_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.label.end_date_year@@-0@@musicbrainz.label.end_date_month@@-@@musicbrainz.label.end_date_day@@" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.end_date_month < 10" ;
+    d2rq:condition "musicbrainz.label.end_date_day > 9" ;
+    d2rq:datatype xsd:date .
+
+map:label_activity_end_date_full_with_month_and_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelActivityTI ;
+    d2rq:property tl:end ;
+    d2rq:pattern "@@musicbrainz.label.end_date_year@@-0@@musicbrainz.label.end_date_month@@-0@@musicbrainz.label.end_date_day@@" ;
+    d2rq:condition "musicbrainz.label.end_date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.label.end_date_month < 10" ;
+    d2rq:condition "musicbrainz.label.end_date_day < 10" ;
+    d2rq:datatype xsd:date .
 
 # TODO deal with label_type
 # musicbrainz_db=# select * from musicbrainz.label_type ;
