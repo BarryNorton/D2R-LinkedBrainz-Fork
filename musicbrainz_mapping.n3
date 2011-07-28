@@ -1015,6 +1015,20 @@ map:label_country a d2rq:PropertyBridge ;
     d2rq:uriPattern "http://ontologi.es/place/@@musicbrainz.country.iso_code@@" ;
     d2rq:join "musicbrainz.label.country => musicbrainz.country.id" .
 
+map:label_label_code a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property mo:lc  ;
+    d2rq:datatype xsd:string ;
+    d2rq:condition "musicbrainz.label.label_code IS NOT NULL" ;
+    d2rq:column "musicbrainz.label.label_code" .
+
+map:label_ipi a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property mo:ipi  ;
+    d2rq:datatype xsd:string ;
+    d2rq:condition "musicbrainz.label.ipi_code IS NOT NULL" ;
+    d2rq:column "musicbrainz.label.ipi_code" .
+
 # label ARs
 # MySpace gid=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
 map:label_dbtune_myspace a d2rq:PropertyBridge ;
