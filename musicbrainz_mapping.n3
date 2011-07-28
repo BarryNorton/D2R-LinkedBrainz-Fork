@@ -21,415 +21,366 @@
 @prefix isi: <http://purl.org/ontology/is/inst/> .
 
 # connection stuff
-map:database a d2rq:Database;
-    d2rq:jdbcDriver "org.postgresql.Driver";
-    d2rq:jdbcDSN "jdbc:postgresql://localhost/musicbrainz_db";
-    d2rq:username "musicbrainz";
-    d2rq:password "musicbrainz";
+map:database a d2rq:Database ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost/musicbrainz_db" ;
+    d2rq:username "musicbrainz" ;
+    d2rq:password "musicbrainz" .
     # relatively crude to limit db load
-    # d2rq:resultSizeLimit "1000";
-    # jdbc:socketTimeout "30";
-    .
+    # d2rq:resultSizeLimit "1000" ;
+    # jdbc:socketTimeout "30" ;
 
-<> a d2r:Server;
-    rdfs:label "LinkedBrainz";
-    d2r:baseURI <http://localhost:2020/>;
-    #d2r:baseURI <http://musicbrainz.org/>;
-    d2r:port 2020;
+<> a d2r:Server ;
+    rdfs:label "LinkedBrainz" ;
+    d2r:baseURI <http://localhost:2020/> ;
+    #d2r:baseURI <http://musicbrainz.org/> ;
+    d2r:port 2020 ;
     d2r:documentMetadata [
-        rdfs:comment "This is an RDF translation of the MusicBrainz service.";
-    ];
-    d2r:vocabularyIncludeInstances true;    
-    .
+        rdfs:comment "This is an RDF translation of the MusicBrainz service." ;
+    ] ;
+    d2r:vocabularyIncludeInstances true .
 
 ####################################
 # translation tables (translators) #
 ####################################
 
-map:DBpediaTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.DBPediaTranslator";
-    .
+map:DBpediaTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DBPediaTranslator" .
 
-map:WikipediaTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.WikipediaTranslator";
-    .
+map:WikipediaTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.WikipediaTranslator" .
 
-map:DBTuneMySpaceTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator";
-    .
+map:DBTuneMySpaceTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator" .
 
-map:MySpaceTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.MySpaceTranslator";
-    .
+map:MySpaceTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MySpaceTranslator" .
 
-map:BBCTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.BBCTranslator";
-    .
+map:BBCTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.BBCTranslator" .
 
-map:DataIncubatorDiscogsTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.DataIncubatorDiscogsTranslator";
-    .
+map:DataIncubatorDiscogsTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DataIncubatorDiscogsTranslator" .
 
-map:DiscogsTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.DiscogsTranslator";
-    .
+map:DiscogsTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DiscogsTranslator" .
 
-map:YouTubeTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.YouTubeTranslator";
-    .
+map:YouTubeTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.YouTubeTranslator" .
 
-map:IBDBTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.IBDBTranslator";
-    .
+map:IBDBTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.IBDBTranslator" .
 
-map:IMDBTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.IMDBTranslator";
-    .
+map:IMDBTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.IMDBTranslator" .
 
-map:IOBDBTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.IOBDBTranslator";
-    .
+map:IOBDBTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.IOBDBTranslator" .
 
-map:MusicMozTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.MusicMozTranslator";
-    .
+map:MusicMozTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MusicMozTranslator" .
 
-map:PureVolumeTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.PureVolumeTranslator";
-    .
+map:PureVolumeTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.PureVolumeTranslator" .
 
-map:VGMDBTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.VGMDBTranslator";
-    .
+map:VGMDBTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.VGMDBTranslator" .
 
-map:MediumTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.MediumTranslator";
-    .
+map:MediumTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.MediumTranslator" .
 
-map:DurationTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.DurationTranslator";
-    .
+map:DurationTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.DurationTranslator" .
 
-map:ReleaseStatusTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseStatusTranslator";
-    .
+map:ReleaseStatusTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseStatusTranslator" .
 
-map:ReleaseTypeTrans a d2rq:TranslationTable;
-    d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseTypeTranslator";
-    .
+map:ReleaseTypeTrans a d2rq:TranslationTable ;
+    d2rq:javaClass "linkedbrainz.d2rs.translator.ReleaseTypeTranslator" .
 
 
 ################
 # artist table #
 ################
 
-map:Artist a d2rq:ClassMap;
-	d2rq:dataStorage map:database;
-	d2rq:uriPattern "artist/@@musicbrainz.artist.gid@@#_";
-	d2rq:class mo:MusicArtist;
-	d2rq:classDefinitionLabel "Music Artist"@en;
-	.
+map:Artist a d2rq:ClassMap ;
+	d2rq:dataStorage map:database ;
+	d2rq:uriPattern "artist/@@musicbrainz.artist.gid@@#_" ;
+	d2rq:class mo:MusicArtist ;
+	d2rq:classDefinitionLabel "Music Artist"@en .
 
-map:musicbrainz_guid_artist a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Artist;
-	d2rq:property mo:musicbrainz_guid;
-	d2rq:column "musicbrainz.artist.gid";
-	d2rq:datatype xsd:string;
-	.
+map:musicbrainz_guid_artist a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Artist ;
+	d2rq:property mo:musicbrainz_guid ;
+	d2rq:column "musicbrainz.artist.gid" ;
+	d2rq:datatype xsd:string .
 
-map:artist_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Artist;
-	d2rq:property foaf:name;
-	d2rq:join "musicbrainz.artist.name => musicbrainz.artist_name.id";
-	d2rq:column "musicbrainz.artist_name.name";
-	.
+map:artist_name a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Artist ;
+	d2rq:property foaf:name ;
+	d2rq:join "musicbrainz.artist.name => musicbrainz.artist_name.id" ;
+	d2rq:column "musicbrainz.artist_name.name" .
 
-map:artist_sort_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-	d2rq:property ov:sortLabel;
-  	d2rq:join "musicbrainz.artist.sort_name => musicbrainz.artist_name.id";
-  	d2rq:column "musicbrainz.artist_name.name";
-  	.
+map:artist_sort_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+	d2rq:property ov:sortLabel ;
+  	d2rq:join "musicbrainz.artist.sort_name => musicbrainz.artist_name.id" ;
+  	d2rq:column "musicbrainz.artist_name.name" .
 
-map:artist_alias a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Artist;
-	d2rq:property skos:altLabel;
-	d2rq:join "musicbrainz.artist_alias.name => musicbrainz.artist_name.id";
-	d2rq:join "musicbrainz.artist_alias.artist => musicbrainz.artist.id";
-  	d2rq:column "musicbrainz.artist_name.name";
-  	.
+map:artist_alias a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Artist ;
+	d2rq:property skos:altLabel ;
+	d2rq:join "musicbrainz.artist_alias.name => musicbrainz.artist_name.id" ;
+	d2rq:join "musicbrainz.artist_alias.artist => musicbrainz.artist.id" ;
+  	d2rq:column "musicbrainz.artist_name.name" .
 
-map:artist_gender a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:gender;
-    d2rq:join "musicbrainz.artist.gender => musicbrainz.gender.id";
-    d2rq:column "musicbrainz.gender.name";
-    .
+map:artist_gender a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:gender ;
+    d2rq:join "musicbrainz.artist.gender => musicbrainz.gender.id" ;
+    d2rq:column "musicbrainz.gender.name" .
 
-map:artist_type_person a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdf:type;
-    d2rq:condition "musicbrainz.artist.type = 1";
-    d2rq:constantValue mo:SoloMusicArtist;
-    .
+map:artist_type_person a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdf:type ;
+    d2rq:condition "musicbrainz.artist.type = 1" ;
+    d2rq:constantValue mo:SoloMusicArtist .
 
-map:artist_type_group a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdf:type;
-    d2rq:condition "musicbrainz.artist.type = 2";
-    d2rq:constantValue mo:MusicGroup;
-    .
+map:artist_type_group a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdf:type ;
+    d2rq:condition "musicbrainz.artist.type = 2" ;
+    d2rq:constantValue mo:MusicGroup .
 
 # setup artist foaf:made
-map:artist_credit_release a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:made;
-    d2rq:refersToClassMap map:Release;
-    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit.id => musicbrainz.release.artist_credit";
-    .
+map:artist_credit_release a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:made ;
+    d2rq:refersToClassMap map:Release ;
+    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit.id => musicbrainz.release.artist_credit" .
 
-map:artist_credit_recording a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:made;
-    d2rq:refersToClassMap map:Recording;
-    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.recording.artist_credit";
-    .
+map:artist_credit_recording a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:made ;
+    d2rq:refersToClassMap map:Recording ;
+    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.recording.artist_credit" .
 
-map:artist_credit_work a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:made;
-    d2rq:refersToClassMap map:Work;
-    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.work.artist_credit";
-    .
+map:artist_credit_work a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:made ;
+    d2rq:refersToClassMap map:Work ;
+    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.work.artist_credit" .
     
 
-map:artist_credit_release_group a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:made;
-    d2rq:refersToClassMap map:ReleaseGroup;
-    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.release_group.artist_credit";
-    .
+map:artist_credit_release_group a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:made ;
+    d2rq:refersToClassMap map:ReleaseGroup ;
+    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.release_group.artist_credit" .
 
-map:artist_credit_track a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:made;
-    d2rq:refersToClassMap map:Track;
-    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.track.artist_credit";
-    .
+map:artist_credit_track a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:made ;
+    d2rq:refersToClassMap map:Track ;
+    d2rq:join "musicbrainz.artist.id <= musicbrainz.artist_credit_name.artist" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit.id <= musicbrainz.track.artist_credit" .
 
 # country
-map:artist_country a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:based_near;
-    d2rq:uriPattern "http://ontologi.es/place/@@musicbrainz.country.iso_code@@";
-    d2rq:join "musicbrainz.artist.country => musicbrainz.country.id";
-    .
+map:artist_country a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:based_near ;
+    d2rq:uriPattern "http://ontologi.es/place/@@musicbrainz.country.iso_code@@" ;
+    d2rq:join "musicbrainz.artist.country => musicbrainz.country.id" .
 
 # artist ARs
 # wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
-map:artist_dbpedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBpediaTrans;
-    .
+map:artist_dbpedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBpediaTrans .
 
 # wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
-map:artist_wikipedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:artist_wikipedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
     
 # discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
 # TODO discogs will pry need a translator as they do some funky things to the URIs
-map:artist_data_incubator_discogs a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DataIncubatorDiscogsTrans;
-    .
+map:artist_data_incubator_discogs a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DataIncubatorDiscogsTrans .
 
 # discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
-map:artist_discogs a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:artist_discogs a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
 # bbc gid=d028a975-000c-4525-9333-d3c8425e4b54 for artists
-map:artist_bbc a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='d028a975-000c-4525-9333-d3c8425e4b54'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:BBCTrans;
-    .
+map:artist_bbc a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='d028a975-000c-4525-9333-d3c8425e4b54'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:BBCTrans .
 
 # foaf:homepage gid=fe33d22f-c3b0-4d68-bd53-a856badf2b15 for artists
-map:artist_homepage a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property foaf:homepage;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='fe33d22f-c3b0-4d68-bd53-a856badf2b15'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    .
+map:artist_homepage a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property foaf:homepage ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='fe33d22f-c3b0-4d68-bd53-a856badf2b15'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" .
 
 # MySpace gid=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
-map:artist_dbtune_myspace a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBTuneMySpaceTrans;
-    .
+map:artist_dbtune_myspace a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBTuneMySpaceTrans .
 
 # MySpace gid=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
-map:artist_myspace a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MySpaceTrans;
-    .
+map:artist_myspace a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MySpaceTrans .
 
 # YouTube link_type.gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0 for artists
-map:artist_youtube a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:YouTubeTrans;
-    .
+map:artist_youtube a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:YouTubeTrans .
 
 # IBDb gid=5728c659-56b2-4e23-97d1-80e1f229c7d3 for artists
-map:artist_ibdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='5728c659-56b2-4e23-97d1-80e1f229c7d3'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IBDBTrans;
-    .
+map:artist_ibdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='5728c659-56b2-4e23-97d1-80e1f229c7d3'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IBDBTrans .
 
 # IMDb gid=94c8b0cc-4477-4106-932c-da60e63de61c for artists
-map:artist_imdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='94c8b0cc-4477-4106-932c-da60e63de61c'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IMDBTrans;
-    .
+map:artist_imdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='94c8b0cc-4477-4106-932c-da60e63de61c'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IMDBTrans .
 
 # IOBDb gid=689043e3-2b9e-47ba-ad86-2742589e0743 for artists
-map:artist_iobdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IOBDBTrans;
-    .
+map:artist_iobdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IOBDBTrans .
 
 # MusicMoz gid=ded9a80a-e6de-4831-880c-c78b9981b54b for artists
-map:artist_musicmoz a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='ded9a80a-e6de-4831-880c-c78b9981b54b'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MusicMozTrans;
-    .
+map:artist_musicmoz a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='ded9a80a-e6de-4831-880c-c78b9981b54b'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MusicMozTrans .
 
 # PureVolume gid=b6f02157-a9d3-4f24-9057-0675b2dbc581 for artists
-map:artist_purevolume a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='b6f02157-a9d3-4f24-9057-0675b2dbc581'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:PureVolumeTrans;
-    .
+map:artist_purevolume a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='b6f02157-a9d3-4f24-9057-0675b2dbc581'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:PureVolumeTrans .
 
 # VGMdb gid=0af15ab3-c615-46d6-b95b-a5fcd2a92ed9 for artists
-map:artist_vgmdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Artist;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:VGMDBTrans;
-    .
+map:artist_vgmdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Artist ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_artist_url.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:VGMDBTrans .
 
 # TODO: activity mapping
 
@@ -437,311 +388,292 @@ map:artist_vgmdb a d2rq:PropertyBridge;
 # release_group table (mo:SignalGroup) #
 ########################################
 
-map:ReleaseGroup a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:uriPattern "signal-group/@@musicbrainz.release_group.gid@@#_";
-    d2rq:class mo:SignalGroup;
-    d2rq:classDefinitionLabel "Signal Group"@en;
-    .
+map:ReleaseGroup a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "signal-group/@@musicbrainz.release_group.gid@@#_" ;
+    d2rq:class mo:SignalGroup ;
+    d2rq:classDefinitionLabel "Signal Group"@en .
 
-map:musicbrainz_guid_release_group a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:ReleaseGroup;
-	d2rq:property mo:musicbrainz_guid;
-	d2rq:column "musicbrainz.release_group.gid";
-	d2rq:datatype xsd:string;
+map:musicbrainz_guid_release_group a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:ReleaseGroup ;
+	d2rq:property mo:musicbrainz_guid ;
+	d2rq:column "musicbrainz.release_group.gid" ;
+	d2rq:datatype xsd:string ;
 	.
 
-map:release_group_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property dct:title;
-    d2rq:join "musicbrainz.release_group.name => musicbrainz.release_name.id";
-    d2rq:column "musicbrainz.release_name.name";
-    .
+map:release_group_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property dct:title ;
+    d2rq:join "musicbrainz.release_group.name => musicbrainz.release_name.id" ;
+    d2rq:column "musicbrainz.release_name.name" ;
+    d2rq:datatype xsd:string .
 	
 
-map:release_group_credit a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property foaf:maker;
-    d2rq:refersToClassMap map:Artist;
-    d2rq:join "musicbrainz.release_group.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
-    .
+map:release_group_credit a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property foaf:maker ;
+    d2rq:refersToClassMap map:Artist ;
+    d2rq:join "musicbrainz.release_group.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id" .
 
 # release group (signal group) ARs
 # wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
-map:release_group_dbpedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBpediaTrans;
-    .
+map:release_group_dbpedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBpediaTrans .
 
 # wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
-map:release_group_wikipedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:release_group_wikipedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
 # discogs gid=99e550f3-5ab4-3110-b5b9-fe01d970b126 for release groups
-map:release_group_discogs a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='99e550f3-5ab4-3110-b5b9-fe01d970b126'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:release_group_discogs a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='99e550f3-5ab4-3110-b5b9-fe01d970b126'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
 # IBDb gid=a7f96734-716e-48b8-9040-adc5b3256836 for release groups
-map:release_group_ibdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='a7f96734-716e-48b8-9040-adc5b3256836'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IBDBTrans;
-    .
+map:release_group_ibdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='a7f96734-716e-48b8-9040-adc5b3256836'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IBDBTrans .
 
 # IMDb gid=85b0a010-3237-47c7-8476-6fcefd4761af for release groups
-map:release_group_imdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='85b0a010-3237-47c7-8476-6fcefd4761af'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IMDBTrans;
-    .
+map:release_group_imdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='85b0a010-3237-47c7-8476-6fcefd4761af'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IMDBTrans .
 
 # IOBDb gid=fd87657e-aa2f-44ad-b5d8-d97c0c938a4d for release groups
-map:release_group_iobdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IOBDBTrans;
-    .
+map:release_group_iobdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IOBDBTrans .
 
 # MusicMoz gid=d111c58d-0d9b-4675-99c1-ddc5a8e01847 for release groups
-map:release_group_musicmoz a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroup;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id";
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='d111c58d-0d9b-4675-99c1-ddc5a8e01847'";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MusicMozTrans;
-    .
+map:release_group_musicmoz a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroup ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_group_url.entity0 => musicbrainz.release_group.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='d111c58d-0d9b-4675-99c1-ddc5a8e01847'" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MusicMozTrans .
 
 ################################################
 # release table (mo:Release + mo:ReleaseEvent) #
 ################################################
 
-map:Release a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:Release;
-    d2rq:classDefinitionLabel "Release"@en;
-    d2rq:uriPattern "release/@@musicbrainz.release.gid@@#_";
-    .
+map:Release a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:Release ;
+    d2rq:classDefinitionLabel "Release"@en ;
+    d2rq:uriPattern "release/@@musicbrainz.release.gid@@#_" .
 
-map:musicbrainz_guid_release a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Release;
-	d2rq:property mo:musicbrainz_guid;
-	d2rq:column "musicbrainz.release.gid";
-	d2rq:datatype xsd:string;
+map:musicbrainz_guid_release a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Release ;
+	d2rq:property mo:musicbrainz_guid ;
+	d2rq:column "musicbrainz.release.gid" ;
+	d2rq:datatype xsd:string ;
 	.
 
-map:release_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Release;
-    d2rq:property dct:title;
-    d2rq:join "musicbrainz.release.name => musicbrainz.release_name.id";
-    d2rq:column "musicbrainz.release_name.name";
-    .
+map:release_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Release ;
+    d2rq:property dct:title ;
+    d2rq:join "musicbrainz.release.name => musicbrainz.release_name.id" ;
+    d2rq:column "musicbrainz.release_name.name" ;
+    d2rq:datatype xsd:string .
 
-map:release_credit a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Release;
-    d2rq:property foaf:maker;
-    d2rq:refersToClassMap map:Artist;
-    d2rq:join "musicbrainz.release.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
-    .
+map:release_credit a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Release ;
+    d2rq:property foaf:maker ;
+    d2rq:refersToClassMap map:Artist ;
+    d2rq:join "musicbrainz.release.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id" .
 
-map:release_record_label a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Release;
-    d2rq:property mo:label;
-    d2rq:refersToClassMap map:Label;
-    d2rq:join "musicbrainz.release_label.release => musicbrainz.release.id";
-    d2rq:join "musicbrainz.release_label.label => musicbrainz.label.id";
-    .
+map:release_record_label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Release ;
+    d2rq:property mo:label ;
+    d2rq:refersToClassMap map:Label ;
+    d2rq:join "musicbrainz.release_label.release => musicbrainz.release.id" ;
+    d2rq:join "musicbrainz.release_label.label => musicbrainz.label.id" .
 
-map:release_mediums a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Release;
-    d2rq:property mo:record;
-    d2rq:join "musicbrainz.medium.release => musicbrainz.release.id";
-    d2rq:refersToClassMap map:Medium;
-    .
+map:release_mediums a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Release ;
+    d2rq:property mo:record ;
+    d2rq:join "musicbrainz.medium.release => musicbrainz.release.id" ;
+    d2rq:refersToClassMap map:Medium .
 
 # TODO: issue raised on the MO repo, see https://github.com/moustaki/motools/issues/2
-map:release_release_status a d2rq:PropertyBridge;
-     d2rq:belongsToClassMap map:Release;
-     d2rq:property mo:release_status;
-     d2rq:join "musicbrainz.release.status => musicbrainz.release_status.id";
-     d2rq:uriColumn "musicbrainz.release_status.id";
-     d2rq:translateWith map:ReleaseStatusTrans;
-     .
+map:release_release_status a d2rq:PropertyBridge ;
+     d2rq:belongsToClassMap map:Release ;
+     d2rq:property mo:release_status ;
+     d2rq:join "musicbrainz.release.status => musicbrainz.release_status.id" ;
+     d2rq:uriColumn "musicbrainz.release_status.id" ;
+     d2rq:translateWith map:ReleaseStatusTrans .
 
 # issue raised at https://github.com/BarryNorton/D2R-LinkedBrainz-Fork/issues/6
-map:release_release_type a d2rq:PropertyBridge;
-     d2rq:belongsToClassMap map:Release;
-     d2rq:property mo:release_type;
-     d2rq:join "musicbrainz.release.release_group => musicbrainz.release_group.id";
-     d2rq:join "musicbrainz.release_group.type => musicbrainz.release_group_type.id";
-     d2rq:uriColumn "musicbrainz.release_group_type.id";
-     d2rq:translateWith map:ReleaseTypeTrans;
-     .
+map:release_release_type a d2rq:PropertyBridge ;
+     d2rq:belongsToClassMap map:Release ;
+     d2rq:property mo:release_type ;
+     d2rq:join "musicbrainz.release.release_group => musicbrainz.release_group.id" ;
+     d2rq:join "musicbrainz.release_group.type => musicbrainz.release_group_type.id" ;
+     d2rq:uriColumn "musicbrainz.release_group_type.id" ;
+     d2rq:translateWith map:ReleaseTypeTrans .
+
+map:release_catalogue_number a d2rq:PropertyBridge ;
+     d2rq:belongsToClassMap map:Release ;
+     d2rq:property mo:catalogue_number ;
+     d2rq:join "musicbrainz.release_label.release => musicbrainz.release.id" ;
+     d2rq:column "musicbrainz.release_label.catalog_number" ;
+     d2rq:datatype xsd:string .
+     
 
 # release ARs
 # discogs gid=4a78823c-1c53-4176-a5f3-58026c76f2bc for releases
-map:release_discogs a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Release;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_url.entity0 => musicbrainz.release.id";
-    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='4a78823c-1c53-4176-a5f3-58026c76f2bc'";
-    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:release_discogs a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Release ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_url.entity0 => musicbrainz.release.id" ;
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='4a78823c-1c53-4176-a5f3-58026c76f2bc'" ;
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
 # VGMdb gid=6af0134a-df6a-425a-96e2-895f9cd342ba for releases
-map:release_vgmdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Release;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_release_url.entity0 => musicbrainz.release.id";
-    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='6af0134a-df6a-425a-96e2-895f9cd342ba'";
-    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:VGMDBTrans;
-    .
+map:release_vgmdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Release ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_release_url.entity0 => musicbrainz.release.id" ;
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6af0134a-df6a-425a-96e2-895f9cd342ba'" ;
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:VGMDBTrans .
 
-map:release_event_to_release a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property mo:release;
-    d2rq:refersToClassMap map:Release;
-    .
+map:release_event_to_release a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property mo:release ;
+    d2rq:refersToClassMap map:Release .
 
 # Release Event
-map:ReleaseEvent a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:ReleaseEvent;
-    d2rq:classDefinitionLabel "Release Event"@en;
-    d2rq:uriPattern "release/@@musicbrainz.release.gid@@#event";
-    .
+map:ReleaseEvent a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:ReleaseEvent ;
+    d2rq:classDefinitionLabel "Release Event"@en ;
+    d2rq:uriPattern "release/@@musicbrainz.release.gid@@#event" .
 
-map:release_country a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property event:place;
-    d2rq:uriPattern "http://ontologi.es/place/@@musicbrainz.country.iso_code@@";
-    d2rq:join "musicbrainz.release.country => musicbrainz.country.id";
-    .
+map:release_country a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property event:place ;
+    d2rq:uriPattern "http://ontologi.es/place/@@musicbrainz.country.iso_code@@" ;
+    d2rq:join "musicbrainz.release.country => musicbrainz.country.id" .
 
-map:release_event_date_year a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:column "musicbrainz.release.date_year";
-    d2rq:condition "musicbrainz.release.date_month IS NULL";
-    d2rq:condition "musicbrainz.release.date_day IS NULL";
-    d2rq:datatype xsd:gYear;
-    .
+map:release_event_date_year a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:column "musicbrainz.release.date_year" ;
+    d2rq:condition "musicbrainz.release.date_month IS NULL" ;
+    d2rq:condition "musicbrainz.release.date_day IS NULL" ;
+    d2rq:datatype xsd:gYear .
 
-map:release_event_date_year_month a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:pattern "@@musicbrainz.release.date_year@@-@@musicbrainz.release.date_month@@";
-    d2rq:condition "musicbrainz.release.date_month > 9";
-    d2rq:condition "musicbrainz.release.date_day IS NULL";
-    d2rq:datatype xsd:gYearMonth;
-    .
+map:release_event_date_year_month a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:pattern "@@musicbrainz.release.date_year@@-@@musicbrainz.release.date_month@@" ;
+    d2rq:condition "musicbrainz.release.date_month > 9" ;
+    d2rq:condition "musicbrainz.release.date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
 
-map:release_event_date_year_month_with_month_padding a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:pattern "@@musicbrainz.release.date_year@@-0@@musicbrainz.release.date_month@@";
-    d2rq:condition "musicbrainz.release.date_month < 10";
-    d2rq:condition "musicbrainz.release.date_day IS NULL";
-    d2rq:datatype xsd:gYearMonth;
-    .
+map:release_event_date_year_month_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:pattern "@@musicbrainz.release.date_year@@-0@@musicbrainz.release.date_month@@" ;
+    d2rq:condition "musicbrainz.release.date_month < 10" ;
+    d2rq:condition "musicbrainz.release.date_day IS NULL" ;
+    d2rq:datatype xsd:gYearMonth .
 
-map:release_event_date_full_no_padding a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:pattern "@@musicbrainz.release.date_year@@-@@musicbrainz.release.date_month@@-@@musicbrainz.release.date_day@@";
-    d2rq:condition "musicbrainz.release.date_day IS NOT NULL";
-    d2rq:condition "musicbrainz.release.date_month > 9";
-    d2rq:condition "musicbrainz.release.date_day > 9";
-    d2rq:datatype xsd:date;
-    .
+map:release_event_date_full_no_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:pattern "@@musicbrainz.release.date_year@@-@@musicbrainz.release.date_month@@-@@musicbrainz.release.date_day@@" ;
+    d2rq:condition "musicbrainz.release.date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.release.date_month > 9" ;
+    d2rq:condition "musicbrainz.release.date_day > 9" ;
+    d2rq:datatype xsd:date .
 
-map:release_event_date_full_with_day_padding a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:pattern "@@musicbrainz.release.date_year@@-@@musicbrainz.release.date_month@@-0@@musicbrainz.release.date_day@@";
-    d2rq:condition "musicbrainz.release.date_day IS NOT NULL";
-    d2rq:condition "musicbrainz.release.date_month > 9";
-    d2rq:condition "musicbrainz.release.date_day < 10";
-    d2rq:datatype xsd:date;
-    .
+map:release_event_date_full_with_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:pattern "@@musicbrainz.release.date_year@@-@@musicbrainz.release.date_month@@-0@@musicbrainz.release.date_day@@" ;
+    d2rq:condition "musicbrainz.release.date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.release.date_month > 9" ;
+    d2rq:condition "musicbrainz.release.date_day < 10" ;
+    d2rq:datatype xsd:date .
 
-map:release_event_date_full_with_month_padding a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:pattern "@@musicbrainz.release.date_year@@-0@@musicbrainz.release.date_month@@-@@musicbrainz.release.date_day@@";
-    d2rq:condition "musicbrainz.release.date_day IS NOT NULL";
-    d2rq:condition "musicbrainz.release.date_month < 10";
-    d2rq:condition "musicbrainz.release.date_day > 9";
-    d2rq:datatype xsd:date;
-    .
+map:release_event_date_full_with_month_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:pattern "@@musicbrainz.release.date_year@@-0@@musicbrainz.release.date_month@@-@@musicbrainz.release.date_day@@" ;
+    d2rq:condition "musicbrainz.release.date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.release.date_month < 10" ;
+    d2rq:condition "musicbrainz.release.date_day > 9" ;
+    d2rq:datatype xsd:date .
 
-map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseEvent;
-    d2rq:property dct:date;
-    d2rq:pattern "@@musicbrainz.release.date_year@@-0@@musicbrainz.release.date_month@@-0@@musicbrainz.release.date_day@@";
-    d2rq:condition "musicbrainz.release.date_day IS NOT NULL";
-    d2rq:condition "musicbrainz.release.date_month < 10";
-    d2rq:condition "musicbrainz.release.date_day < 10";
-    d2rq:datatype xsd:date;
-    .
+map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseEvent ;
+    d2rq:property dct:date ;
+    d2rq:pattern "@@musicbrainz.release.date_year@@-0@@musicbrainz.release.date_month@@-0@@musicbrainz.release.date_day@@" ;
+    d2rq:condition "musicbrainz.release.date_day IS NOT NULL" ;
+    d2rq:condition "musicbrainz.release.date_month < 10" ;
+    d2rq:condition "musicbrainz.release.date_day < 10" ;
+    d2rq:datatype xsd:date .
 
 # TODO deal with release_packaging ???
 #  id |      name       
@@ -759,289 +691,264 @@ map:release_event_date_full_with_month_and_day_padding a d2rq:PropertyBridge;
 # medium table (mo:Record) #
 ############################
 
-map:Medium a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:Record;
-    d2rq:classDefinitionLabel "Record"@en;
-    d2rq:uriPattern "record/@@musicbrainz.medium.id@@#_";
-    .
+map:Medium a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:Record ;
+    d2rq:classDefinitionLabel "Record"@en ;
+    d2rq:uriPattern "record/@@musicbrainz.medium.id@@#_" .
 
-map:medium_track a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Medium;
-    d2rq:property mo:track;
-    d2rq:refersToClassMap map:Track;
-    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id";	
-    d2rq:join "musicbrainz.track.tracklist => musicbrainz.tracklist.id";
-    .
+map:medium_track a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Medium ;
+    d2rq:property mo:track ;
+    d2rq:refersToClassMap map:Track ;
+    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id" ;	
+    d2rq:join "musicbrainz.track.tracklist => musicbrainz.tracklist.id" .
 
-map:medium_track_count a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Medium;
-    d2rq:property mo:track_count ;
-    d2rq:datatype xsd:int;
-    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id";	
-    d2rq:column "musicbrainz.tracklist.track_count";
-    .
+map:medium_track_count a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Medium ;
+    d2rq:property mo:track_count  ;
+    d2rq:datatype xsd:int ;
+    d2rq:join "musicbrainz.medium.tracklist => musicbrainz.tracklist.id" ;	
+    d2rq:column "musicbrainz.tracklist.track_count" .
 
-map:medium_media_type a d2rq:PropertyBridge;
-     d2rq:belongsToClassMap map:Medium;
-     d2rq:property mo:media_type;
-     d2rq:join "musicbrainz.medium.format => musicbrainz.medium_format.id";
-     d2rq:uriColumn "musicbrainz.medium_format.id";
-     d2rq:translateWith map:MediumTrans;
+map:medium_media_type a d2rq:PropertyBridge ;
+     d2rq:belongsToClassMap map:Medium ;
+     d2rq:property mo:media_type ;
+     d2rq:join "musicbrainz.medium.format => musicbrainz.medium_format.id" ;
+     d2rq:uriColumn "musicbrainz.medium_format.id" ;
+     d2rq:translateWith map:MediumTrans ;
      .
 
 ###############
 # track table #
 ###############
 
-map:Track a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    # d2rq:bNodeIdColumns "musicbrainz.track.id";
-    d2rq:uriPattern "track/@@musicbrainz.track.id@@#_";
-    d2rq:class mo:Track;
-    d2rq:classDefinitionLabel "Track"@en;
-    .
+map:Track a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    # d2rq:bNodeIdColumns "musicbrainz.track.id" ;
+    d2rq:uriPattern "track/@@musicbrainz.track.id@@#_" ;
+    d2rq:class mo:Track ;
+    d2rq:classDefinitionLabel "Track"@en .
 
-map:track_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Track;
-    d2rq:property dct:title;
-    d2rq:join "musicbrainz.track.name => musicbrainz.track_name.id";
-    d2rq:column "musicbrainz.track_name.name";
-    .
+map:track_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Track ;
+    d2rq:property dct:title ;
+    d2rq:join "musicbrainz.track.name => musicbrainz.track_name.id" ;
+    d2rq:column "musicbrainz.track_name.name" ;
+    d2rq:datatype xsd:string .
 
-map:track_credit a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Track;
-    d2rq:property foaf:maker;
-    d2rq:refersToClassMap map:Artist;
-    d2rq:join "musicbrainz.track.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
-    .
+map:track_credit a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Track ;
+    d2rq:property foaf:maker ;
+    d2rq:refersToClassMap map:Artist ;
+    d2rq:join "musicbrainz.track.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id" .
 
-map:track_to_recording a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Track;
-    d2rq:property mo:publication_of;
-    d2rq:refersToClassMap map:Recording;
-    d2rq:join "musicbrainz.track.recording => musicbrainz.recording.id";
-    .
+map:track_to_recording a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Track ;
+    d2rq:property mo:publication_of ;
+    d2rq:refersToClassMap map:Recording ;
+    d2rq:join "musicbrainz.track.recording => musicbrainz.recording.id" .
 
-map:track_position a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Track;
-    d2rq:property mo:track_number ;
-    d2rq:datatype xsd:nonNegativeInteger;
-    d2rq:column "musicbrainz.track.position";
-    .
+map:track_position a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Track ;
+    d2rq:property mo:track_number  ;
+    d2rq:datatype xsd:nonNegativeInteger ;
+    d2rq:column "musicbrainz.track.position" .
 
-map:track_duration a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Track;
-    d2rq:property mo:duration;
-    d2rq:column "musicbrainz.track.length";
-    d2rq:condition "musicbrainz.track.length IS NOT NULL";
-    d2rq:translateWith map:DurationTrans;
-    d2rq:datatype xsd:float;
-    .
+map:track_duration a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Track ;
+    d2rq:property mo:duration ;
+    d2rq:column "musicbrainz.track.length" ;
+    d2rq:condition "musicbrainz.track.length IS NOT NULL" ;
+    d2rq:translateWith map:DurationTrans ;
+    d2rq:datatype xsd:float .
 
 ###################
 # recording table #
 ###################
 
-map:Recording a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:Signal;
-    d2rq:classDefinitionLabel "Signal"@en;
-    d2rq:uriPattern "recording/@@musicbrainz.recording.gid@@#_";
-    .
+map:Recording a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:Signal ;
+    d2rq:classDefinitionLabel "Signal"@en ;
+    d2rq:uriPattern "recording/@@musicbrainz.recording.gid@@#_" .
 
-map:musicbrainz_guid_recording a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Recording;
-	d2rq:property mo:musicbrainz_guid;
-	d2rq:column "musicbrainz.recording.gid";
-	d2rq:datatype xsd:string;
+map:musicbrainz_guid_recording a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Recording ;
+	d2rq:property mo:musicbrainz_guid ;
+	d2rq:column "musicbrainz.recording.gid" ;
+	d2rq:datatype xsd:string ;
 	.
 
-map:recording_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Recording;
-    d2rq:property dct:title;
-    d2rq:join "musicbrainz.recording.name => musicbrainz.track_name.id";
-    d2rq:column "musicbrainz.track_name.name";
-    .
+map:recording_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Recording ;
+    d2rq:property dct:title ;
+    d2rq:join "musicbrainz.recording.name => musicbrainz.track_name.id" ;
+    d2rq:column "musicbrainz.track_name.name" ;
+    d2rq:datatype xsd:string .
 
-map:recording_credit a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Recording;
-    d2rq:property foaf:maker;
-    d2rq:refersToClassMap map:Artist;
-    d2rq:join "musicbrainz.recording.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
-    .
+map:recording_credit a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Recording ;
+    d2rq:property foaf:maker ;
+    d2rq:refersToClassMap map:Artist ;
+    d2rq:join "musicbrainz.recording.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id" .
 
-map:recording_isrc a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Recording;
-    d2rq:property mo:isrc;
-    d2rq:join "musicbrainz.isrc.recording => musicbrainz.recording.id";
-    d2rq:column "musicbrainz.isrc.isrc";
-    d2rq:datatype xsd:string;
-    .
+map:recording_isrc a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Recording ;
+    d2rq:property mo:isrc ;
+    d2rq:join "musicbrainz.isrc.recording => musicbrainz.recording.id" ;
+    d2rq:column "musicbrainz.isrc.isrc" ;
+    d2rq:datatype xsd:string .
 
-map:recording_puid a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Recording;
-    d2rq:property mo:puid;
-    d2rq:join "musicbrainz.recording_puid.recording => musicbrainz.recording.id";
-    d2rq:join "musicbrainz.recording_puid.puid => musicbrainz.puid.id";
-    d2rq:column "musicbrainz.puid.puid";
-    d2rq:datatype xsd:string;
-    .
+map:recording_puid a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Recording ;
+    d2rq:property mo:puid ;
+    d2rq:join "musicbrainz.recording_puid.recording => musicbrainz.recording.id" ;
+    d2rq:join "musicbrainz.recording_puid.puid => musicbrainz.puid.id" ;
+    d2rq:column "musicbrainz.puid.puid" ;
+    d2rq:datatype xsd:string .
 
 # BN: Only run this rule if the length is not null
-map:recording_duration a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Recording;
-    d2rq:property mo:duration;
-    d2rq:column "musicbrainz.recording.length";
-    d2rq:condition "musicbrainz.recording.length IS NOT NULL";
-    d2rq:translateWith map:DurationTrans;
-    d2rq:datatype xsd:float;
-    .
+map:recording_duration a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Recording ;
+    d2rq:property mo:duration ;
+    d2rq:column "musicbrainz.recording.length" ;
+    d2rq:condition "musicbrainz.recording.length IS NOT NULL" ;
+    d2rq:translateWith map:DurationTrans ;
+    d2rq:datatype xsd:float .
 
-map:recording_to_track a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Recording;
-    d2rq:property mo:published_as;
-    d2rq:refersToClassMap map:Track;
-    d2rq:join "musicbrainz.recording.id => musicbrainz.track.recording";
-    .
+map:recording_to_track a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Recording ;
+    d2rq:property mo:published_as ;
+    d2rq:refersToClassMap map:Track ;
+    d2rq:join "musicbrainz.recording.id => musicbrainz.track.recording" .
     
 
 ##############
 # work table #
 ##############
 
-map:Work a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:MusicalWork;
-    d2rq:classDefinitionLabel "Musical Work"@en;
-    d2rq:uriPattern "work/@@musicbrainz.work.gid@@#_";
-    .
+map:Work a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:MusicalWork ;
+    d2rq:classDefinitionLabel "Musical Work"@en ;
+    d2rq:uriPattern "work/@@musicbrainz.work.gid@@#_" .
 
-map:musicbrainz_guid_work a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Work;
-	d2rq:property mo:musicbrainz_guid;
-	d2rq:column "musicbrainz.work.gid";
-	d2rq:datatype xsd:string;
+map:musicbrainz_guid_work a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Work ;
+	d2rq:property mo:musicbrainz_guid ;
+	d2rq:column "musicbrainz.work.gid" ;
+	d2rq:datatype xsd:string ;
 	.
 
-map:work_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property dct:title;
-    d2rq:join "musicbrainz.work.name => musicbrainz.work_name.id";
-    d2rq:column "musicbrainz.work_name.name";
-    .
+map:work_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property dct:title ;
+    d2rq:join "musicbrainz.work.name => musicbrainz.work_name.id" ;
+    d2rq:column "musicbrainz.work_name.name" ;
+    d2rq:datatype xsd:string .
 
-map:work_credit a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property foaf:maker;
-    d2rq:refersToClassMap map:Artist;
-    d2rq:join "musicbrainz.work.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id";
-    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
-    .
+map:work_credit a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property foaf:maker ;
+    d2rq:refersToClassMap map:Artist ;
+    d2rq:join "musicbrainz.work.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist_credit => musicbrainz.artist_credit.id" ;
+    d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id" .
 
-map:work_alias a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property skos:altLabel;
-    d2rq:join "musicbrainz.work_alias.work => musicbrainz.work.id";
-    d2rq:join "musicbrainz.work_alias.name => musicbrainz.work_name.id";
-    d2rq:column "musicbrainz.work_name.name";
-    .
+map:work_alias a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property skos:altLabel ;
+    d2rq:join "musicbrainz.work_alias.work => musicbrainz.work.id" ;
+    d2rq:join "musicbrainz.work_alias.name => musicbrainz.work_name.id" ;
+    d2rq:column "musicbrainz.work_name.name" .
 
-map:work_composed_in a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property mo:composed_in;
-    d2rq:refersToClassMap map:WorkComposition;
-    .
+map:work_composed_in a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property mo:composed_in ;
+    d2rq:refersToClassMap map:WorkComposition .
 
 # work ARs
 # wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
-map:work_dbpedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBpediaTrans;
-    .
+map:work_dbpedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id" ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBpediaTrans .
 
 # wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
-map:work_wikipedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:work_wikipedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id" ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
 # IBDb gid=206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c for works
-map:work_ibdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IBDBTrans;
-    .
+map:work_ibdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id" ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IBDBTrans .
 
 # IOBDb gid=8845d830-fe9b-4ed6-a084-b1a3f193167a for works
-map:work_iobdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Work;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id";
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='8845d830-fe9b-4ed6-a084-b1a3f193167a'";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IOBDBTrans;
-    .
+map:work_iobdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_url_work.entity1 => musicbrainz.work.id" ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='8845d830-fe9b-4ed6-a084-b1a3f193167a'" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IOBDBTrans .
 
 # composition event
-map:WorkComposition a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:Composition;
-    d2rq:classDefinitionLabel "Composition"@en;
-    d2rq:uriPattern "work/@@musicbrainz.work.gid@@#composition";
-    .
+map:WorkComposition a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:Composition ;
+    d2rq:classDefinitionLabel "Composition"@en ;
+    d2rq:uriPattern "work/@@musicbrainz.work.gid@@#composition" .
 
-map:composition_produced_work a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:WorkComposition;
-    d2rq:property mo:produced_work;
-    d2rq:refersToClassMap map:Work;
-    .
+map:composition_produced_work a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:WorkComposition ;
+    d2rq:property mo:produced_work ;
+    d2rq:refersToClassMap map:Work .
 
 # composed by AR
-map:work_composed_by a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:WorkComposition;
-    d2rq:property mo:composer ;
-    d2rq:refersToClassMap map:Artist;
-    d2rq:condition "musicbrainz.link_type.id = 168";
-    d2rq:join "musicbrainz.link_type.id <= musicbrainz.link.link_type";
-    d2rq:join "musicbrainz.link.id <= musicbrainz.l_artist_work.link";
-    d2rq:join "musicbrainz.l_artist_work.entity0 => musicbrainz.artist.id";
-    d2rq:join "musicbrainz.l_artist_work.entity1 => musicbrainz.work.id";
-    .
+map:work_composed_by a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:WorkComposition ;
+    d2rq:property mo:composer  ;
+    d2rq:refersToClassMap map:Artist ;
+    d2rq:condition "musicbrainz.link_type.id = 168" ;
+    d2rq:join "musicbrainz.link_type.id <= musicbrainz.link.link_type" ;
+    d2rq:join "musicbrainz.link.id <= musicbrainz.l_artist_work.link" ;
+    d2rq:join "musicbrainz.l_artist_work.entity0 => musicbrainz.artist.id" ;
+    d2rq:join "musicbrainz.l_artist_work.entity1 => musicbrainz.work.id" .
 
 # TODO deal with "arranged by" and other l_artist_work ARs many are important!
 
 # note work_type currently empty 2010-10-07
 # UPDATE: 17 types (on 2011-07-08), e.g., Aria, Ballet, ..., Song, ...
-# musicbrainz_db=# select * from musicbrainz.work_type;
+# musicbrainz_db=# select * from musicbrainz.work_type ;
 #  id | name 
 # ----+------
 # (0 rows)
@@ -1052,148 +959,136 @@ map:work_composed_by a d2rq:PropertyBridge;
 # label table #
 ###############
 
-map:Label a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class mo:Label;
-    d2rq:classDefinitionLabel "Label"@en;
-    d2rq:uriPattern "label/@@musicbrainz.label.gid@@#_";
-    .
+map:Label a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class mo:Label ;
+    d2rq:classDefinitionLabel "Label"@en ;
+    d2rq:uriPattern "label/@@musicbrainz.label.gid@@#_" .
 
-map:musicbrainz_guid_label a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:Label;
-	d2rq:property mo:musicbrainz_guid;
-	d2rq:column "musicbrainz.label.gid";
-	d2rq:datatype xsd:string;
+map:musicbrainz_guid_label a d2rq:PropertyBridge ;
+	d2rq:belongsToClassMap map:Label ;
+	d2rq:property mo:musicbrainz_guid ;
+	d2rq:column "musicbrainz.label.gid" ;
+	d2rq:datatype xsd:string ;
 	.
 
-map:label_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property foaf:name;
-    d2rq:join "musicbrainz.label.name => musicbrainz.label_name.id";
-    d2rq:column "musicbrainz.label_name.name";
-    .
+map:label_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property foaf:name ;
+    d2rq:join "musicbrainz.label.name => musicbrainz.label_name.id" ;
+    d2rq:column "musicbrainz.label_name.name" .
 
-map:label_sort_name a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property ov:sortLabel;
-    d2rq:join "musicbrainz.label.sort_name => musicbrainz.label_name.id";
-    d2rq:column "musicbrainz.label_name.name";
-    .
+map:label_sort_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property ov:sortLabel ;
+    d2rq:join "musicbrainz.label.sort_name => musicbrainz.label_name.id" ;
+    d2rq:column "musicbrainz.label_name.name" .
 
-map:label_alias a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property skos:altLabel;
-    d2rq:join "musicbrainz.label_alias.label => musicbrainz.label.id";
-    d2rq:join "musicbrainz.label_alias.name => musicbrainz.label_name.id";
-    d2rq:column "musicbrainz.label_name.name";
-    .
+map:label_alias a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property skos:altLabel ;
+    d2rq:join "musicbrainz.label_alias.label => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.label_alias.name => musicbrainz.label_name.id" ;
+    d2rq:column "musicbrainz.label_name.name" .
 
 # label ARs
 # MySpace gid=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
-map:label_dbtune_myspace a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBTuneMySpaceTrans;
-    .
+map:label_dbtune_myspace a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBTuneMySpaceTrans .
 
 # MySpace gid=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
-map:label_myspace a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MySpaceTrans;
-    .
+map:label_myspace a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MySpaceTrans .
 
 # Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for labels
-map:label_dbpedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property owl:sameAs;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBPediaTrans;
-    .
+map:label_dbpedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property owl:sameAs ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBPediaTrans .
 
 # Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for labels
-map:label_wikipedia a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:label_wikipedia a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
 # YouTube link_type.gid=d9c71059-ba9d-4135-b909-481d12cf84e3 for labels
-map:label_youtube a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:YouTubeTrans;
-    .
+map:label_youtube a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:YouTubeTrans .
 
 # discogs gid=5b987f87-25bc-4a2d-b3f1-3618795b8207 for labels
-map:label_discogs a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='5b987f87-25bc-4a2d-b3f1-3618795b8207'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:label_discogs a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='5b987f87-25bc-4a2d-b3f1-3618795b8207'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
 # VGMdb gid=8a2d3e55-d291-4b99-87a0-c59c6b121762 for labels
-map:label_vgmdb a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property rdfs:seeAlso;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='8a2d3e55-d291-4b99-87a0-c59c6b121762'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:VGMDBTrans;
-    .
+map:label_vgmdb a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property rdfs:seeAlso ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='8a2d3e55-d291-4b99-87a0-c59c6b121762'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:VGMDBTrans .
 
 # foaf:homepage gid=fe108f43-acb9-4ad1-8be3-57e6ec5b17b6 for labels
-map:label_homepage a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Label;
-    d2rq:property foaf:homepage;
-    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id";
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:condition "musicbrainz.link_type.gid='fe108f43-acb9-4ad1-8be3-57e6ec5b17b6'";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:uriColumn "musicbrainz.url.url";
-    .
+map:label_homepage a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property foaf:homepage ;
+    d2rq:join "musicbrainz.l_label_url.entity0 => musicbrainz.label.id" ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='fe108f43-acb9-4ad1-8be3-57e6ec5b17b6'" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:uriColumn "musicbrainz.url.url" .
 
 # TODO deal with label_type
-# musicbrainz_db=# select * from musicbrainz.label_type;
+# musicbrainz_db=# select * from musicbrainz.label_type ;
 #  id |        name         
 # ----+---------------------
 #   1 | Distributor
@@ -1216,662 +1111,594 @@ map:label_homepage a d2rq:PropertyBridge;
 ##########################
 
 # MySpace id=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
-map:ArtistDBTuneMyspaceIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist DBTune MySpace Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBTuneMySpaceTrans;
-    .
+map:ArtistDBTuneMyspaceIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist DBTune MySpace Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBTuneMySpaceTrans .
 
 # http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_dbtune_myspace_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistDBTuneMyspaceIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dbtunemyspace;
-    .
+map:artist_dbtune_myspace_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistDBTuneMyspaceIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dbtunemyspace .
 
 # MySpace id=bac47923-ecde-4b59-822e-d08f0cd10156 for artists
-map:ArtistMyspaceIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist MySpace Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MySpaceTrans;
-    .
+map:ArtistMyspaceIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist MySpace Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='bac47923-ecde-4b59-822e-d08f0cd10156'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MySpaceTrans .
 
-map:artist_myspace_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistMyspaceIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:myspace;
-    .
+map:artist_myspace_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistMyspaceIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:myspace .
 
 # MySpace id=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
-map:LabelDBTuneMyspaceIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label DBTune MySpace Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBTuneMySpaceTrans;
-    .
+map:LabelDBTuneMyspaceIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label DBTune MySpace Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBTuneMySpaceTrans .
 
 # http://dbtune.org/myspace/ (IS resource doesn't exist yet at the isi namespace)
-map:label_dbtune_myspace_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelDBTuneMyspaceIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dbtunemyspace;
-    .
+map:label_dbtune_myspace_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelDBTuneMyspaceIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dbtunemyspace .
 
 # MySpace id=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
-map:LabelMyspaceIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label MySpace Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MySpaceTrans;
-    .
+map:LabelMyspaceIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label MySpace Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='240ba9dc-9898-4505-9bf7-32a53a695612'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MySpaceTrans .
 
-map:label_myspace_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelMyspaceIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:myspace;
-    .
+map:label_myspace_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelMyspaceIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:myspace .
 
 # DataIncubator Discogs + Discogs
 #################################
 
 # Discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
-map:ArtistDataIncubatorDiscogsIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist DataIncubator Discogs Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DataIncubatorDiscogsTrans;
-    .
+map:ArtistDataIncubatorDiscogsIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist DataIncubator Discogs Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DataIncubatorDiscogsTrans .
 
 # http://discogs.dataincubator.org/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_data_incubator_discogs_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistDataIncubatorDiscogsIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dataincubatordiscogs;
-    .
+map:artist_data_incubator_discogs_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistDataIncubatorDiscogsIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dataincubatordiscogs .
 
 # Discogs gid=04a5b104-a4c2-4bac-99a1-7b837c37d9e4 for artists
-map:ArtistDiscogsIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist Discogs Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:ArtistDiscogsIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist Discogs Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='04a5b104-a4c2-4bac-99a1-7b837c37d9e4'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
-map:artist_discogs_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistDiscogsIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:discogs;
-    .
+map:artist_discogs_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistDiscogsIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:discogs .
 
 # Discogs gid=5b987f87-25bc-4a2d-b3f1-3618795b8207 for labels
-map:LabelDiscogsIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label Discogs Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='5b987f87-25bc-4a2d-b3f1-3618795b8207'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:LabelDiscogsIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label Discogs Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='5b987f87-25bc-4a2d-b3f1-3618795b8207'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
-map:label_discogs_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelDiscogsIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:discogs;
-    .
+map:label_discogs_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelDiscogsIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:discogs .
 
 # Discogs gid=4a78823c-1c53-4176-a5f3-58026c76f2bc for releases
-map:ReleaseDiscogsIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Discogs Resources"@en;
-    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='4a78823c-1c53-4176-a5f3-58026c76f2bc'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:ReleaseDiscogsIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Discogs Resources"@en ;
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='4a78823c-1c53-4176-a5f3-58026c76f2bc'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
-map:release_discogs_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseDiscogsIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:discogs;
-    .
+map:release_discogs_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseDiscogsIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:discogs .
 
 # Discogs gid=99e550f3-5ab4-3110-b5b9-fe01d970b126 for release groups
-map:ReleaseGroupDiscogsIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group Discogs Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='99e550f3-5ab4-3110-b5b9-fe01d970b126'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DiscogsTrans;
-    .
+map:ReleaseGroupDiscogsIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group Discogs Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='99e550f3-5ab4-3110-b5b9-fe01d970b126'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DiscogsTrans .
 
-map:release_group_discogs_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupDiscogsIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:discogs;
-    .
+map:release_group_discogs_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupDiscogsIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:discogs .
 
 # BBC
 #####
 
 # BBC gid=d028a975-000c-4525-9333-d3c8425e4b54 for artists
-map:ArtistBBCIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist BBC Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='d028a975-000c-4525-9333-d3c8425e4b54'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:BBCTrans;
-    .
+map:ArtistBBCIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist BBC Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='d028a975-000c-4525-9333-d3c8425e4b54'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:BBCTrans .
 
-map:artist_bbc_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistBBCIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:bbc;
-    .
+map:artist_bbc_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistBBCIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:bbc .
 
 # DBPedia + Wikipedia
 #####################
 
 # Wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
-map:ArtistDBPediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist DBpedia Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBpediaTrans;
-    .
+map:ArtistDBPediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist DBpedia Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBpediaTrans .
 
-map:artist_dbpedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistDBPediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dbpedia;
-    .
+map:artist_dbpedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistDBPediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dbpedia .
 
 # Wikipedia gid=29651736-fa6d-48e4-aadc-a557c6add1cb for artists
-map:ArtistWikipediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist Wikipedia Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:ArtistWikipediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist Wikipedia Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='29651736-fa6d-48e4-aadc-a557c6add1cb'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
-map:artist_wikipedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistWikipediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:wikipedia;
-    .
+map:artist_wikipedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistWikipediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:wikipedia .
 
 # Wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
-map:ReleaseGroupDBPediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group DBpedia Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBpediaTrans;
-    .
+map:ReleaseGroupDBPediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group DBpedia Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBpediaTrans .
 
-map:release_group_dbpedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupDBPediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dbpedia;
-    .
+map:release_group_dbpedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupDBPediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dbpedia .
 
 # Wikipedia gid=6578f0e9-1ace-4095-9de8-6e517ddb1ceb for release groups
-map:ReleaseGroupWikipediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group Wikipedia Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:ReleaseGroupWikipediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group Wikipedia Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6578f0e9-1ace-4095-9de8-6e517ddb1ceb'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
-map:release_group_wikipedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupWikipediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:wikipedia;
-    .
+map:release_group_wikipedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupWikipediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:wikipedia .
 
 # Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release labels
-map:LabelDBPediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label DBpedia Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBpediaTrans;
-    .
+map:LabelDBPediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label DBpedia Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBpediaTrans .
 
-map:label_dbpedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelDBPediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dbpedia;
-    .
+map:label_dbpedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelDBPediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dbpedia .
 
 # Wikipedia gid=51e9db21-8864-49b3-aa58-470d7b81fa50 for release labels
-map:LabelWikipediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label Wikipedia Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:LabelWikipediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label Wikipedia Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='51e9db21-8864-49b3-aa58-470d7b81fa50'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
-map:label_wikipedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelWikipediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:wikipedia;
-    .
+map:label_wikipedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelWikipediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:wikipedia .
 
 # Wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
-map:WorkDBPediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Work DBPedia Resources"@en;
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:DBPediaTrans;
-    .
+map:WorkDBPediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Work DBPedia Resources"@en ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:DBPediaTrans .
 
-map:work_dbpedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:WorkDBPediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:dbpedia;
-    .
+map:work_dbpedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:WorkDBPediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:dbpedia .
 
 # Wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
-map:WorkWikipediaIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Work Wikipedia Resources"@en;
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:WikipediaTrans;
-    .
+map:WorkWikipediaIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Work Wikipedia Resources"@en ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:WikipediaTrans .
 
-map:work_wikipedia_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:WorkWikipediaIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:wikipedia;
-    .
+map:work_wikipedia_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:WorkWikipediaIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:wikipedia .
 
 # YouTube
 #########
 
 # YouTube gid=6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0 for artists
-map:ArtistYouTubeIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist YouTube Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:YouTubeTrans;
-    .
+map:ArtistYouTubeIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist YouTube Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:YouTubeTrans .
 
 # http://youtube.com/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_youtube_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistYouTubeIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:youtube;
-    .
+map:artist_youtube_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistYouTubeIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:youtube .
 
 # YouTube gid=d9c71059-ba9d-4135-b909-481d12cf84e3 for labels
-map:LabelYouTubeIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label YouTube Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:YouTubeTrans;
-    .
+map:LabelYouTubeIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label YouTube Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='d9c71059-ba9d-4135-b909-481d12cf84e3'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:YouTubeTrans .
 
 # http://youtube.com/ (IS resource doesn't exist yet at the isi namespace)
-map:label_youtube_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelYouTubeIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:youtube;
-    .
+map:label_youtube_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelYouTubeIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:youtube .
 
 # IBDb
 ######
 
 # IBDb gid=a7f96734-716e-48b8-9040-adc5b3256836 for release groups
-map:ReleaseGroupIBDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group IBDb Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='a7f96734-716e-48b8-9040-adc5b3256836'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IBDBTrans;
-    .
+map:ReleaseGroupIBDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group IBDb Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='a7f96734-716e-48b8-9040-adc5b3256836'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IBDBTrans .
 
 # http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
-map:release_group_ibdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupIBDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:ibdb;
-    .
+map:release_group_ibdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupIBDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:ibdb .
 
 # IBDb gid=5728c659-56b2-4e23-97d1-80e1f229c7d3 for artists
-map:ArtistIBDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist IBDb Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='5728c659-56b2-4e23-97d1-80e1f229c7d3'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IBDBTrans;
-    .
+map:ArtistIBDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist IBDb Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='5728c659-56b2-4e23-97d1-80e1f229c7d3'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IBDBTrans .
 
 # http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_ibdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistIBDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:ibdb;
-    .
+map:artist_ibdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistIBDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:ibdb .
 
 # IBDb gid=206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c for works
-map:WorkIBDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Work IBDb Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IBDBTrans;
-    .
+map:WorkIBDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Work IBDb Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IBDBTrans .
 
 # http://ibdb.com/ (IS resource doesn't exist yet at the isi namespace)
-map:work_ibdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:WorkIBDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:ibdb;
-    .
+map:work_ibdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:WorkIBDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:ibdb .
 
 # IMDb
 ######
 
 # IMDb gid=85b0a010-3237-47c7-8476-6fcefd4761af for release groups
-map:ReleaseGroupIMDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group IMDb Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='85b0a010-3237-47c7-8476-6fcefd4761af'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IMDBTrans;
-    .
+map:ReleaseGroupIMDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group IMDb Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='85b0a010-3237-47c7-8476-6fcefd4761af'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IMDBTrans .
 
 # http://imdb.com/ (IS resource doesn't exist yet at the isi namespace)
-map:release_group_imdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupIMDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:imdb;
-    .
+map:release_group_imdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupIMDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:imdb .
 
 # IMDb gid=94c8b0cc-4477-4106-932c-da60e63de61c for artists
-map:ArtistIMDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist IMDb Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='94c8b0cc-4477-4106-932c-da60e63de61c'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IMDBTrans;
-    .
+map:ArtistIMDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist IMDb Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='94c8b0cc-4477-4106-932c-da60e63de61c'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IMDBTrans .
 
 # http://imdb.com/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_imdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistIMDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:imdb;
-    .
+map:artist_imdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistIMDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:imdb .
 
 # IOBDb
 #######
 
 # IOBDb gid=fd87657e-aa2f-44ad-b5d8-d97c0c938a4d for release groups
-map:ReleaseGroupIOBDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group IOBDb Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IOBDBTrans;
-    .
+map:ReleaseGroupIOBDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group IOBDb Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IOBDBTrans .
 
 # http://lortel.org/ (IS resource doesn't exist yet at the isi namespace)
-map:release_group_iobdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupIOBDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:iobdb;
-    .
+map:release_group_iobdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupIOBDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:iobdb .
 
 # IOBDb gid=689043e3-2b9e-47ba-ad86-2742589e0743 for artists
-map:ArtistIOBDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist IOBDb Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IOBDBTrans;
-    .
+map:ArtistIOBDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist IOBDb Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IOBDBTrans .
 
 # http://lortel.org/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_iobdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistIOBDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:iobdb;
-    .
+map:artist_iobdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistIOBDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:iobdb .
 
 # IOBDb gid=689043e3-2b9e-47ba-ad86-2742589e0743 for artists
-map:WorkIOBDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Work IOBDb Resources"@en;
-    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:IOBDBTrans;
-    .
+map:WorkIOBDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Work IOBDb Resources"@en ;
+    d2rq:join "musicbrainz.l_url_work.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_url_work.entity0 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='689043e3-2b9e-47ba-ad86-2742589e0743'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:IOBDBTrans .
 
 # http://lortel.org/ (IS resource doesn't exist yet at the isi namespace)
-map:work_iobdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:WorkIOBDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:iobdb;
-    .
+map:work_iobdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:WorkIOBDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:iobdb .
 
 # MusicMoz
 ##########
 
 # MusicMoz gid=d111c58d-0d9b-4675-99c1-ddc5a8e01847 for release groups
-map:ReleaseGroupMusicMozIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release Group MusicMoz Resources"@en;
-    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='d111c58d-0d9b-4675-99c1-ddc5a8e01847'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MusicMozTrans;
-    .
+map:ReleaseGroupMusicMozIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release Group MusicMoz Resources"@en ;
+    d2rq:join "musicbrainz.l_release_group_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_group_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='d111c58d-0d9b-4675-99c1-ddc5a8e01847'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MusicMozTrans .
 
 # http://musicmoz.org/ (IS resource doesn't exist yet at the isi namespace)
-map:release_group_musicmoz_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseGroupMusicMozIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:musicmoz;
-    .
+map:release_group_musicmoz_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseGroupMusicMozIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:musicmoz .
 
 # MusicMoz gid=ded9a80a-e6de-4831-880c-c78b9981b54b for artists
-map:ArtistMusicMozIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist MusicMoz Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='ded9a80a-e6de-4831-880c-c78b9981b54b'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:MusicMozTrans;
-    .
+map:ArtistMusicMozIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist MusicMoz Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='ded9a80a-e6de-4831-880c-c78b9981b54b'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:MusicMozTrans .
 
 # http://musicmoz.org/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_musicmoz_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistMusicMozIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:musicmoz;
-    .
+map:artist_musicmoz_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistMusicMozIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:musicmoz .
 
 # PureVolume
 ############
 
 # PureVolume gid=b6f02157-a9d3-4f24-9057-0675b2dbc581 for artists
-map:ArtistPureVolumeIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist PureVolume Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='b6f02157-a9d3-4f24-9057-0675b2dbc581'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:PureVolumeTrans;
-    .
+map:ArtistPureVolumeIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist PureVolume Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='b6f02157-a9d3-4f24-9057-0675b2dbc581'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:PureVolumeTrans .
 
 # http://purevolume.com/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_purevolume_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistPureVolumeIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:purevolume;
-    .
+map:artist_purevolume_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistPureVolumeIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:purevolume .
 
 # VGMdb
 #######
 
 # VGMdb gid=0af15ab3-c615-46d6-b95b-a5fcd2a92ed9 for artists
-map:ArtistVGMDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Artist VGMdb Resources"@en;
-    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:VGMDBTrans;
-    .
+map:ArtistVGMDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Artist VGMdb Resources"@en ;
+    d2rq:join "musicbrainz.l_artist_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_artist_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:VGMDBTrans .
 
 # http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
-map:artist_vgmdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ArtistVGMDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:vgmdb;
-    .
+map:artist_vgmdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ArtistVGMDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:vgmdb .
 
 # VGMdb gid=6af0134a-df6a-425a-96e2-895f9cd342ba for releases
-map:ReleaseVGMDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Release VGMdb Resources"@en;
-    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='6af0134a-df6a-425a-96e2-895f9cd342ba'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:VGMDBTrans;
-    .
+map:ReleaseVGMDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Release VGMdb Resources"@en ;
+    d2rq:join "musicbrainz.l_release_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_release_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='6af0134a-df6a-425a-96e2-895f9cd342ba'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:VGMDBTrans .
 
 # http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
-map:release_vgmdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ReleaseVGMDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:vgmdb;
-    .
+map:release_vgmdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ReleaseVGMDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:vgmdb .
 
 # VGMdb gid=8a2d3e55-d291-4b99-87a0-c59c6b121762 for labels
-map:LabelVGMDBIS a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:classDefinitionLabel "Label VGMdb Resources"@en;
-    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id";
-    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id";
-    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id";
-    d2rq:condition "musicbrainz.link_type.gid='8a2d3e55-d291-4b99-87a0-c59c6b121762'"; 	
-    d2rq:uriColumn "musicbrainz.url.url";
-    d2rq:translateWith map:VGMDBTrans;
-    .
+map:LabelVGMDBIS a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:classDefinitionLabel "Label VGMdb Resources"@en ;
+    d2rq:join "musicbrainz.l_label_url.link => musicbrainz.link.id" ;
+    d2rq:join "musicbrainz.link.link_type => musicbrainz.link_type.id" ;
+    d2rq:join "musicbrainz.l_label_url.entity1 => musicbrainz.url.id" ;
+    d2rq:condition "musicbrainz.link_type.gid='8a2d3e55-d291-4b99-87a0-c59c6b121762'" ; 	
+    d2rq:uriColumn "musicbrainz.url.url" ;
+    d2rq:translateWith map:VGMDBTrans .
 
 # http://vgmdb.net/ (IS resource doesn't exist yet at the isi namespace)
-map:label_vgmdb_is a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:LabelVGMDBIS;
-    d2rq:property is:info_service;
-    d2rq:constantValue isi:vgmdb;
-    .
+map:label_vgmdb_is a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:LabelVGMDBIS ;
+    d2rq:property is:info_service ;
+    d2rq:constantValue isi:vgmdb .
