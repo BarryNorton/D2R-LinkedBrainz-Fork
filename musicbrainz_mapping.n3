@@ -699,6 +699,14 @@ map:Medium a d2rq:ClassMap ;
     d2rq:classDefinitionLabel "Record"@en ;
     d2rq:uriPattern "record/@@musicbrainz.medium.id@@#_" .
 
+map:medium_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Medium ;
+    d2rq:property dct:title ;
+    d2rq:condition "musicbrainz.medium.name IS NOT NULL" ;
+    d2rq:column "musicbrainz.medium.name" ;
+    d2rq:datatype xsd:string .
+
+
 map:medium_track a d2rq:PropertyBridge ;
     d2rq:belongsToClassMap map:Medium ;
     d2rq:property mo:track ;
@@ -999,6 +1007,13 @@ map:label_alias a d2rq:PropertyBridge ;
     d2rq:join "musicbrainz.label_alias.label => musicbrainz.label.id" ;
     d2rq:join "musicbrainz.label_alias.name => musicbrainz.label_name.id" ;
     d2rq:column "musicbrainz.label_name.name" .
+
+# country
+map:label_country a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Label ;
+    d2rq:property foaf:based_near ;
+    d2rq:uriPattern "http://ontologi.es/place/@@musicbrainz.country.iso_code@@" ;
+    d2rq:join "musicbrainz.label.country => musicbrainz.country.id" .
 
 # label ARs
 # MySpace gid=240ba9dc-9898-4505-9bf7-32a53a695612 for labels
