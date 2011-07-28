@@ -564,6 +564,7 @@ map:release_release_type a d2rq:PropertyBridge ;
      d2rq:uriColumn "musicbrainz.release_group_type.id" ;
      d2rq:translateWith map:ReleaseTypeTrans .
 
+# issue raised at https://github.com/moustaki/motools/issues/7
 map:release_catalogue_number a d2rq:PropertyBridge ;
      d2rq:belongsToClassMap map:Release ;
      d2rq:property mo:catalogue_number ;
@@ -872,6 +873,13 @@ map:work_composed_in a d2rq:PropertyBridge ;
     d2rq:belongsToClassMap map:Work ;
     d2rq:property mo:composed_in ;
     d2rq:refersToClassMap map:WorkComposition .
+
+map:work_iswc a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Work ;
+    d2rq:property mo:iswc  ;
+    d2rq:datatype xsd:string ;
+    d2rq:condition "musicbrainz.work.iswc IS NOT NULL" ;
+    d2rq:column "musicbrainz.work.iswc" .
 
 # work ARs
 # wikipedia gid=b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab for works
