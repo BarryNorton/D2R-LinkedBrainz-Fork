@@ -832,6 +832,15 @@ map:track_position a d2rq:PropertyBridge;
     d2rq:column "musicbrainz.track.position";
     .
 
+map:track_duration a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Track;
+    d2rq:property mo:duration;
+    d2rq:column "musicbrainz.track.length";
+    d2rq:condition "musicbrainz.track.length IS NOT NULL";
+    d2rq:translateWith map:DurationTrans;
+    d2rq:datatype xsd:float;
+    .
+
 ###################
 # recording table #
 ###################
@@ -866,7 +875,7 @@ map:recording_credit a d2rq:PropertyBridge;
     d2rq:join "musicbrainz.artist_credit_name.artist => musicbrainz.artist.id";
     .
 
-map:isrc a d2rq:PropertyBridge;
+map:recording_isrc a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
     d2rq:property mo:isrc;
     d2rq:join "musicbrainz.isrc.recording => musicbrainz.recording.id";
@@ -874,7 +883,7 @@ map:isrc a d2rq:PropertyBridge;
     d2rq:datatype xsd:string;
     .
 
-map:puid a d2rq:PropertyBridge;
+map:recording_puid a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
     d2rq:property mo:puid;
     d2rq:join "musicbrainz.recording_puid.recording => musicbrainz.recording.id";
@@ -884,7 +893,7 @@ map:puid a d2rq:PropertyBridge;
     .
 
 # BN: Only run this rule if the length is not null
-map:duration a d2rq:PropertyBridge;
+map:recording_duration a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Recording;
     d2rq:property mo:duration;
     d2rq:column "musicbrainz.recording.length";
