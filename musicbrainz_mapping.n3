@@ -568,6 +568,7 @@ map:release_catalogue_number a d2rq:PropertyBridge ;
      d2rq:belongsToClassMap map:Release ;
      d2rq:property mo:catalogue_number ;
      d2rq:join "musicbrainz.release_label.release => musicbrainz.release.id" ;
+     d2rq:condition "musicbrainz.release_label.catalog_number IS NOT NULL" ;
      d2rq:column "musicbrainz.release_label.catalog_number" ;
      d2rq:datatype xsd:string .
      
