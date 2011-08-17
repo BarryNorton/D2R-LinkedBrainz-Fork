@@ -27,7 +27,7 @@ Check doc/index.html for more information, or visit the website at
 for the latest updates on D2R Server.
 
 
-[1] https://github.com/zazi/LinkedBrainzTestcases
+[1] https://github.com/LinkedBrainz/LinkedBrainzTestcases
 [2] http://purl.org/ontology/mo/
 [3] the mapping makes use of further Semantic Web Ontologies, e.g., FOAF [4]
 [4] http://xmlns.com/foaf/0.1/
@@ -38,4 +38,4 @@ for the latest updates on D2R Server.
 [9] https://github.com/zazi/D2RQ-maven (maven project)
 [10] https://github.com/cygri/d2rq
 [11] https://github.com/cygri/d2rq/pull/1
-[12] https://github.com/zazi/linkedbrainz-d2rs-translators (maven project)
+[12] https://github.com/LinkedBrainz/linkedbrainz-d2rs-translators (maven project)
